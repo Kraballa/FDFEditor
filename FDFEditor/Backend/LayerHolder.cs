@@ -11,7 +11,10 @@ namespace FDFEditor.Backend
     {
         public List<BatchHolder> Batches;
 
-
+        public string name { get; set; }
+        public string begin { get; set; }
+        public string end { get; set; }
+        public string numShots { get; set; }
 
 
         private LayerView View;
@@ -25,12 +28,15 @@ namespace FDFEditor.Backend
         {
             LayerHolder l = new LayerHolder();
 
-            string str1 = stream.ReadLine();
-            if (str1.Contains("empty"))
+            string[] str1 = stream.ReadLine().Split(',');
+            if (str1[0].Contains("empty"))
                 return l;
 
-            string num1 = str1.Split(',')[3];
-            int numBatches = int.Parse(num1);
+            l.name = str1[0].Split(':')[1];
+            l.begin = str1[1];
+            l.end = str1[2];
+            int numBatches = int.Parse(str1[3]);
+
             for (int i = 0; i < numBatches; i++)
             {
                 try

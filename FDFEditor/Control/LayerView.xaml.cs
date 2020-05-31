@@ -23,6 +23,7 @@ namespace FDFEditor.Control
         public LayerView(LayerHolder holder)
         {
             InitializeComponent();
+
             this.holder = holder;
         }
     }
