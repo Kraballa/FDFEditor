@@ -42,9 +42,9 @@ namespace FDFEditor
                 MainTabControl.Items.Add(tab);
                 MainTabControl.SelectedIndex = MainTabControl.Items.IndexOf(tab);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                string text = "Error parsing file. Either it's invalid or it was already decrypted.";
+                string text = "Error. Either the file couldn't be parsed or the decryption failed.\n" + e;
                 MessageBox.Show(text, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
@@ -69,9 +69,9 @@ namespace FDFEditor
                 MainTabControl.Items.Add(tab);
                 MainTabControl.SelectedIndex = MainTabControl.Items.IndexOf(tab);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                string text = "Error parsing file. Either it's invalid or it was already decrypted.";
+                string text = "Error reading file. It was already decrypted.\n" + e;
                 MessageBox.Show(text, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
@@ -117,7 +117,7 @@ namespace FDFEditor
         {
             if (MainTabControl.Items.Count == 0)
             {
-                MessageBox.Show("no file opened", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("No tab opened.", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
             {
@@ -168,9 +168,9 @@ namespace FDFEditor
                     {
                         Crypt.DecryptAndMove(from, to);
                     }
-                    catch (Exception)
+                    catch (Exception e)
                     {
-                        string text = "Error decrypting file. It probably used a different key for encryption.";
+                        string text = "Error decrypting file. It probably used a different key for encryption.\n" + e;
                         MessageBox.Show(text, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
@@ -207,7 +207,7 @@ namespace FDFEditor
         {
             TabItem tab = new TabItem();
             tab.Header = "Scratchpad";
-            tab.Content = new TextEditorTabItem("Scratchpad |\n-----------+\n");
+            tab.Content = new TextEditorTabItem("Scratchpad\n----------\n");
             MainTabControl.Items.Add(tab);
             MainTabControl.SelectedIndex = MainTabControl.Items.IndexOf(tab);
         }
