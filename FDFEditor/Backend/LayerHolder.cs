@@ -14,8 +14,6 @@ namespace FDFEditor.Backend
         public string name { get; set; }
         public string begin { get; set; }
         public string end { get; set; }
-        public string numShots { get; set; }
-
 
         private LayerView View;
 
@@ -55,6 +53,25 @@ namespace FDFEditor.Backend
         public IView GetView()
         {
             return View;
+        }
+
+        public string GetString()
+        {
+            string ret = "Layer:";
+            if (Batches.Count == 0)
+            {
+                ret += "empty\n";
+                return ret;
+            }
+            else
+            {
+                ret += string.Format("{0},{1},{2},{3},0,0,0,0\n", name, begin, end, Batches.Count);
+                foreach (BatchHolder b in Batches)
+                {
+                    ret += b.GetString();
+                }
+                return ret;
+            }
         }
     }
 }

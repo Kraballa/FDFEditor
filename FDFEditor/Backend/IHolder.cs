@@ -8,5 +8,6 @@ namespace FDFEditor.Backend
     public interface IHolder
     {
         public IView GetView();
+        public string GetString();
     }
 }

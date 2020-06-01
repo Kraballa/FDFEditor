@@ -12,6 +12,11 @@ namespace FDFEditor.Backend
         public int TotalFrames;
         private PatternView View;
 
+        public string Types = "";
+        public string GlobalEvents = "";
+        public string Sounds = "";
+        public string Center = "";
+
         private PatternHolder() { }
 
         public static PatternHolder Parse(Stream script)
@@ -24,31 +29,34 @@ namespace FDFEditor.Backend
             string str1 = stream.ReadLine();
             if (str1.Contains("Types"))
             {
+                p.Types += str1 + "\n";
                 for (int i = 0; i < int.Parse(str1.Split(' ')[0]); i++)
                 {
-                    stream.ReadLine(); //bullet type definitions
+                    p.Types += stream.ReadLine() + "\n"; //bullet type definitions
                 }
                 str1 = stream.ReadLine();
             }
             if (str1.Contains("GlobalEvents"))
             {
+                p.GlobalEvents += str1 + "\n";
                 for (int i = 0; i < int.Parse(str1.Split(' ')[0]); i++)
                 {
-                    stream.ReadLine(); //global event definitions
+                    p.GlobalEvents += stream.ReadLine() + "\n"; //global event definitions
                 }
                 str1 = stream.ReadLine();
             }
             if (str1.Contains("Sounds"))
             {
+                p.Sounds += str1 + "\n";
                 for (int i = 0; i < int.Parse(str1.Split(' ')[0]); i++)
                 {
-                    stream.ReadLine(); //sound definitions
+                    p.Sounds += stream.ReadLine() + "\n"; //sound definitions
                 }
                 str1 = stream.ReadLine();
             }
             if (str1.Contains(','))
             {
-                //"Center" Definition, whatever that is
+                p.Center += str1 + "\n";
             }
             p.TotalFrames = int.Parse(stream.ReadLine().Split(':')[1]);
             for (int i = 0; i < p.Layers.Length; i++)
@@ -60,9 +68,16 @@ namespace FDFEditor.Backend
             return p;
         }
 
-        public static string ToFile()
+        public string GetString()
         {
-            return "";
+            string ret = "Crazy Storm Data 1.01\n";
+            ret += Types + GlobalEvents + Sounds + Center;
+            for (int i = 0; i < Layers.Length; i++)
+            {
+                ret += Layers[i].GetString();
+            }
+
+            return ret;
         }
 
         public IView GetView()

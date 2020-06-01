@@ -6,7 +6,10 @@
              xmlns:local="clr-namespace:FDFEditor.Control"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <TextBlock>PatternView</TextBlock>
-    </Grid>
+    <StackPanel>
+        <TextBox Text="{Binding Path=Types}"/>
+        <TextBox Text="{Binding Path=GlobalEvents}"/>
+        <TextBox Text="{Binding Path=Sounds}"/>
+        <TextBox Text="{Binding Path=Center}"/>
+    </StackPanel>
 </UserControl>

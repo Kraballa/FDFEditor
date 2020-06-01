@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:FDFEditor.Control"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <StackPanel>
         <TextBlock>BatchView</TextBlock>
-    </Grid>
+    </StackPanel>
 </UserControl>

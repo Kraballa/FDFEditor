@@ -23,6 +23,7 @@ namespace FDFEditor.Control
         public PatternView(PatternHolder holder)
         {
             InitializeComponent();
+            DataContext = holder;
             this.holder = holder;
         }
     }

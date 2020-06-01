@@ -22,8 +22,9 @@ namespace FDFEditor.Control
         private LayerHolder holder;
         public LayerView(LayerHolder holder)
         {
-            InitializeComponent();
 
+            InitializeComponent();
+            this.DataContext = holder;
             this.holder = holder;
         }
     }

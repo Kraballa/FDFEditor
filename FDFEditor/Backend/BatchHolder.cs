@@ -26,6 +26,11 @@ namespace FDFEditor.Backend
             return b;
         }
 
+        public string GetString()
+        {
+            throw new NotImplementedException();
+        }
+
         public IView GetView()
         {
             return View;

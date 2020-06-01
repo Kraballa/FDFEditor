@@ -7,6 +7,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel>
-        <TextBox x:Name="NameTextBox" Text="{Binding Path=holder.Name}"/>
+        <TextBox Text="{Binding Path=name}"/>
+        <TextBox Text="{Binding Path=begin}"/>
+        <TextBox Text="{Binding Path=end}"/>
+        <TextBox Text="{Binding Path=numShots}"/>
     </StackPanel>
 </UserControl>

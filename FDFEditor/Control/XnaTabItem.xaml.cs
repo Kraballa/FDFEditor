@@ -27,7 +27,7 @@ namespace FDFEditor.Control
             ViewMap = new Dictionary<TreeViewItem, IHolder>();
             TreeViewItem root = new TreeViewItem();
             root.Header = "root";
-
+            ViewMap.Add(root, pattern);
             for (int i = 0; i < pattern.Layers.Length; i++)
             {
                 TreeViewItem layerItem = new TreeViewItem();
@@ -44,7 +44,6 @@ namespace FDFEditor.Control
                 layerItem.Selected += TabItemSelected;
                 root.Items.Add(layerItem);
             }
-            ViewMap.Add(root, pattern);
             root.ExpandSubtree();
             TreeView.Items.Add(root);
         }

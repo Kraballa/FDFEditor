@@ -23,6 +23,7 @@ namespace FDFEditor.Control
         public BatchView(BatchHolder holder)
         {
             InitializeComponent();
+            DataContext = holder;
             this.holder = holder;
         }
     }
