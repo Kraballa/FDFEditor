@@ -13,7 +13,7 @@ namespace FDFEditor.Backend
 
         #region values
 
-        public string[] fields;
+        public string[] fields { get; set; }
 
         #endregion
 

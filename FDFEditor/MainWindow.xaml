@@ -6,7 +6,7 @@
         xmlns:uc="clr-namespace:FDFEditor.Control"
         xmlns:local="clr-namespace:FDFEditor"
         mc:Ignorable="d"
-        Title="FDF2 Pattern Editor" Height="450" Width="800">
+        Title="FDF2 Pattern Editor" Height="700" Width="1200">
     <Window.CommandBindings>
         <CommandBinding Command="Open" Executed="OpenCommand"/>
         <CommandBinding Command="Close" Executed="CloseCommand"/>

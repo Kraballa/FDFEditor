@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:FDFEditor.Control"
+             xmlns:uc="clr-namespace:FDFEditor.Control"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
@@ -17,17 +17,97 @@
     </UserControl.Resources>
     <StackPanel>
         <WrapPanel Orientation="Horizontal" Style="{StaticResource spStyle}">
-            <TextBox ToolTip="id" Text="{Binding Path=fields[0]}" Style="{StaticResource tbStyle}"/>
-            <TextBox ToolTip="parentid" Text="{Binding Path=fields[1]}" Style="{StaticResource tbStyle}"/>
-            <TextBox ToolTip="bound?" Text="{Binding Path=fields[2]}" Style="{StaticResource tbStyle}"/>
-            <TextBox ToolTip="bindid" Text="{Binding Path=fields[3]}" Style="{StaticResource tbStyle}"/>
-            <TextBox ToolTip="bindwithspeedd" Text="{Binding Path=fields[4]}" Style="{StaticResource tbStyle}"/>
+            <uc:TitledTextBox Title="ID" Text="{Binding Path=fields[0]}"/>
+            <uc:TitledTextBox Title="parentId" Text="{Binding Path=fields[1]}"/>
+            <uc:TitledTextBox Title="bound?" Text="{Binding Path=fields[2]}"/>
+            <uc:TitledTextBox Title="bindId" Text="{Binding Path=fields[3]}"/>
+            <uc:TitledTextBox Title="bindWithSpeedd" Text="{Binding Path=fields[4]}"/>
+            <uc:TitledTextBox Title="begin" Text="{Binding Path=fields[8]}"/>
+            <uc:TitledTextBox Title="life" Text="{Binding Path=fields[9]}"/>
+            <uc:TitledTextBox Title="fx" Text="{Binding Path=fields[10]}"/>
+            <uc:TitledTextBox Title="fy" Text="{Binding Path=fields[11]}"/>
         </WrapPanel>
-        <WrapPanel Orientation="Horizontal">
-            <TextBox ToolTip="id" Text="{Binding Path=fields[0]}" Style="{StaticResource tbStyle}"/>
+        <WrapPanel Orientation="Horizontal" Style="{StaticResource spStyle}">
+            <uc:TitledTextBox Title="r" Text="{Binding Path=fields[12]}"/>
+            <uc:TitledTextBox Title="rdirection" Text="{Binding Path=fields[13]}"/>
+            <uc:TitledTextBox Title="rdirections" Text="{Binding Path=fields[14]}"/>
+            <uc:TitledTextBox Title="tiao" Text="{Binding Path=fields[15]}"/>
+            <uc:TitledTextBox Title="t" Text="{Binding Path=fields[16]}"/>
+            <uc:TitledTextBox Title="fdirection" Text="{Binding Path=fields[17]}"/>
+            <uc:TitledTextBox Title="fdirections" Text="{Binding Path=fields[18]}"/>
+            <uc:TitledTextBox Title="range" Text="{Binding Path=fields[19]}"/>
         </WrapPanel>
-        <WrapPanel Orientation="Horizontal">
-
+        <WrapPanel Orientation="Horizontal" Style="{StaticResource spStyle}">
+            <uc:TitledTextBox Title="speed" Text="{Binding Path=fields[20]}"/>
+            <uc:TitledTextBox Title="speedd" Text="{Binding Path=fields[21]}"/>
+            <uc:TitledTextBox Title="speedds" Text="{Binding Path=fields[22]}"/>
+            <uc:TitledTextBox Title="aspeed" Text="{Binding Path=fields[23]}"/>
+            <uc:TitledTextBox Title="aspeedd" Text="{Binding Path=fields[24]}"/>
+            <uc:TitledTextBox Title="aspeedds" Text="{Binding Path=fields[25]}"/>
         </WrapPanel>
+        <WrapPanel Orientation="Horizontal" Style="{StaticResource spStyle}">
+            <uc:TitledTextBox Title="sonlife" Text="{Binding Path=fields[26]}"/>
+            <uc:TitledTextBox Title="type" Text="{Binding Path=fields[27]}"/>
+            <uc:TitledTextBox Title="wscale" Text="{Binding Path=fields[28]}"/>
+            <uc:TitledTextBox Title="hscale" Text="{Binding Path=fields[29]}"/>
+            <uc:TitledTextBox Title="colorR" Text="{Binding Path=fields[30]}"/>
+            <uc:TitledTextBox Title="colorG" Text="{Binding Path=fields[31]}"/>
+            <uc:TitledTextBox Title="colorB" Text="{Binding Path=fields[32]}"/>
+        </WrapPanel>
+        <WrapPanel Orientation="Horizontal" Style="{StaticResource spStyle}">
+            <uc:TitledTextBox Title="alpha" Text="{Binding Path=fields[33]}"/>
+            <uc:TitledTextBox Title="head" Text="{Binding Path=fields[34]}"/>
+            <uc:TitledTextBox Title="heads" Text="{Binding Path=fields[35]}"/>
+            <uc:TitledTextBox Title="withspeedd" Text="{Binding Path=fields[36]}"/>
+            <uc:TitledTextBox Title="sonspeed" Text="{Binding Path=fields[37]}"/>
+            <uc:TitledTextBox Title="sonspeedd" Text="{Binding Path=fields[38]}"/>
+            <uc:TitledTextBox Title="sonspeedds" Text="{Binding Path=fields[39]}"/>
+            <uc:TitledTextBox Title="sonaspeed" Text="{Binding Path=fields[40]}"/>
+            <uc:TitledTextBox Title="sonaspeedd" Text="{Binding Path=fields[41]}"/>
+            <uc:TitledTextBox Title="sonaspeedds" Text="{Binding Path=fields[42]}"/>
+        </WrapPanel>
+        <WrapPanel Orientation="Horizontal" Style="{StaticResource spStyle}">
+            <uc:TitledTextBox Title="xscale" Text="{Binding Path=fields[43]}"/>
+            <uc:TitledTextBox Title="yscale" Text="{Binding Path=fields[44]}"/>
+            <uc:TitledTextBox Title="Mist" Text="{Binding Path=fields[45]}"/>
+            <uc:TitledTextBox Title="Dispel" Text="{Binding Path=fields[46]}"/>
+            <uc:TitledTextBox Title="Blend" Text="{Binding Path=fields[47]}"/>
+            <uc:TitledTextBox Title="Afterimage" Text="{Binding Path=fields[48]}"/>
+            <uc:TitledTextBox Title="Outdispel" Text="{Binding Path=fields[49]}"/>
+            <uc:TitledTextBox Title="Invincible" Text="{Binding Path=fields[50]}"/>
+        </WrapPanel>
+        <WrapPanel Orientation="Horizontal" Style="{StaticResource spStyle}">
+            <uc:TitledTextBox Title="ParentEvents" Text="{Binding Path=fields[51]}"/>
+        </WrapPanel>
+        <WrapPanel Orientation="Horizontal" Style="{StaticResource spStyle}">
+            <uc:TitledTextBox Title="SonEvents" Text="{Binding Path=fields[52]}"/>
+        </WrapPanel>
+        <WrapPanel Orientation="Horizontal" Style="{StaticResource spStyle}">
+            <uc:TitledTextBox Title="rand.fx" Text="{Binding Path=fields[53]}"/>
+            <uc:TitledTextBox Title="rand.fy" Text="{Binding Path=fields[54]}"/>
+            <uc:TitledTextBox Title="rand.r" Text="{Binding Path=fields[55]}"/>
+            <uc:TitledTextBox Title="rand.rdirection" Text="{Binding Path=fields[56]}"/>
+            <uc:TitledTextBox Title="rand.tiao" Text="{Binding Path=fields[57]}"/>
+            <uc:TitledTextBox Title="rand.t" Text="{Binding Path=fields[58]}"/>
+            <uc:TitledTextBox Title="rand.fdirection" Text="{Binding Path=fields[59]}"/>
+            <uc:TitledTextBox Title="rand.range" Text="{Binding Path=fields[60]}"/>
+        </WrapPanel>
+        <WrapPanel Orientation="Horizontal" Style="{StaticResource spStyle}">
+            <uc:TitledTextBox Title="rand.speed" Text="{Binding Path=fields[61]}"/>
+            <uc:TitledTextBox Title="rand.speedd" Text="{Binding Path=fields[62]}"/>
+            <uc:TitledTextBox Title="rand.aspeed" Text="{Binding Path=fields[63]}"/>
+            <uc:TitledTextBox Title="rand.aspeedd" Text="{Binding Path=fields[64]}"/>
+            <uc:TitledTextBox Title="rand.head" Text="{Binding Path=fields[65]}"/>
+            <uc:TitledTextBox Title="rand.sonspeed" Text="{Binding Path=fields[66]}"/>
+            <uc:TitledTextBox Title="rand.sonspeedd" Text="{Binding Path=fields[67]}"/>
+            <uc:TitledTextBox Title="rand.sonaspeed" Text="{Binding Path=fields[68]}"/>
+            <uc:TitledTextBox Title="rand.sonaspeedd" Text="{Binding Path=fields[69]}"/>
+        </WrapPanel>
+        <!--<WrapPanel Orientation="Horizontal" Style="{StaticResource spStyle}">
+            <uc:TitledTextBox Title="Cover" Text="{Binding Path=fields[70]}"/>
+            <uc:TitledTextBox Title="Rebound" Text="{Binding Path=fields[71]}"/>
+            <uc:TitledTextBox Title="Force" Text="{Binding Path=fields[72]}"/>
+            <uc:TitledTextBox Title="Deepbind" Text="{Binding Path=fields[73]}"/>
+        </WrapPanel>-->
     </StackPanel>
 </UserControl>

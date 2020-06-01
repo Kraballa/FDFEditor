@@ -12,10 +12,10 @@ namespace FDFEditor.Backend
         public int TotalFrames;
         private PatternView View;
 
-        public string Types = "";
-        public string GlobalEvents = "";
-        public string Sounds = "";
-        public string Center = "";
+        public string Types { get; set; }
+        public string GlobalEvents { get; set; }
+        public string Sounds { get; set; }
+        public string Center { get; set; }
 
         private PatternHolder() { }
 
@@ -29,34 +29,34 @@ namespace FDFEditor.Backend
             string str1 = stream.ReadLine();
             if (str1.Contains("Types"))
             {
-                p.Types += str1 + "\n";
+                p.Types += str1;
                 for (int i = 0; i < int.Parse(str1.Split(' ')[0]); i++)
                 {
-                    p.Types += stream.ReadLine() + "\n"; //bullet type definitions
+                    p.Types += "\n" + stream.ReadLine(); //bullet type definitions
                 }
                 str1 = stream.ReadLine();
             }
             if (str1.Contains("GlobalEvents"))
             {
-                p.GlobalEvents += str1 + "\n";
+                p.GlobalEvents += str1;
                 for (int i = 0; i < int.Parse(str1.Split(' ')[0]); i++)
                 {
-                    p.GlobalEvents += stream.ReadLine() + "\n"; //global event definitions
+                    p.GlobalEvents += "\n" + stream.ReadLine(); //global event definitions
                 }
                 str1 = stream.ReadLine();
             }
             if (str1.Contains("Sounds"))
             {
-                p.Sounds += str1 + "\n";
+                p.Sounds += str1;
                 for (int i = 0; i < int.Parse(str1.Split(' ')[0]); i++)
                 {
-                    p.Sounds += stream.ReadLine() + "\n"; //sound definitions
+                    p.Sounds += "\n" + stream.ReadLine(); //sound definitions
                 }
                 str1 = stream.ReadLine();
             }
             if (str1.Contains(','))
             {
-                p.Center += str1 + "\n";
+                p.Center += str1;
             }
             p.TotalFrames = int.Parse(stream.ReadLine().Split(':')[1]);
             for (int i = 0; i < p.Layers.Length; i++)
@@ -71,7 +71,7 @@ namespace FDFEditor.Backend
         public string GetString()
         {
             string ret = "Crazy Storm Data 1.01\n";
-            ret += Types + GlobalEvents + Sounds + Center;
+            ret += Types + "\n" + GlobalEvents + "\n" + Sounds + "\n" + Center + "\n";
             for (int i = 0; i < Layers.Length; i++)
             {
                 ret += Layers[i].GetString();
