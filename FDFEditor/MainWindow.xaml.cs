@@ -168,9 +168,9 @@ namespace FDFEditor
                     {
                         Crypt.DecryptAndMove(from, to);
                     }
-                    catch (Exception e)
+                    catch (Exception ex)
                     {
-                        string text = "Error decrypting file. It probably used a different key for encryption.\n" + e;
+                        string text = "Error decrypting file. It probably used a different key for encryption.\n" + ex;
                         MessageBox.Show(text, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
@@ -207,7 +207,7 @@ namespace FDFEditor
         {
             TabItem tab = new TabItem();
             tab.Header = "Scratchpad";
-            tab.Content = new TextEditorTabItem("Scratchpad\n----------\n");
+            tab.Content = new TextEditorTabItem("Scratchpad\n----------\n\n");
             MainTabControl.Items.Add(tab);
             MainTabControl.SelectedIndex = MainTabControl.Items.IndexOf(tab);
         }
