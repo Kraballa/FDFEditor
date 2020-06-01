@@ -14,6 +14,7 @@ namespace FDFEditor.Backend
         public string name { get; set; }
         public string begin { get; set; }
         public string end { get; set; }
+        public string[] numThings = new string[5];
 
         private LayerView View;
         private string index;
@@ -35,6 +36,11 @@ namespace FDFEditor.Backend
             l.name = str1[0].Split(':')[1];
             l.begin = str1[1];
             l.end = str1[2];
+
+            for (int i = 0; i < 5; i++)
+            {
+                l.numThings[i] = str1[i + 3];
+            }
 
             int num1 = int.Parse(str1[3]);
             for (int i = 0; i < num1; i++)

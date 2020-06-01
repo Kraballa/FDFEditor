@@ -71,7 +71,22 @@ namespace FDFEditor.Backend
         public string GetString()
         {
             string ret = "Crazy Storm Data 1.01\n";
-            ret += Types + "\n" + GlobalEvents + "\n" + Sounds + "\n" + Center + "\n";
+            if (Types != "")
+            {
+                ret += Types + "\n";
+            }
+            if (GlobalEvents != "")
+            {
+                ret += GlobalEvents + "\n";
+            }
+            if (Sounds != "")
+            {
+                ret += Sounds + "\n";
+            }
+            if (Center != "")
+            {
+                ret += Center + "\n";
+            }
             for (int i = 0; i < Layers.Length; i++)
             {
                 ret += Layers[i].GetString();

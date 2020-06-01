@@ -17,11 +17,11 @@ namespace FDFEditor.Control
     /// <summary>
     /// Interaktionslogik für XnaTabItem.xaml
     /// </summary>
-    public partial class XnaTabItem : UserControl
+    public partial class PatternTabItem : UserControl, ITabItem
     {
         Dictionary<TreeViewItem, IHolder> ViewMap;
 
-        public XnaTabItem(PatternHolder pattern)
+        public PatternTabItem(PatternHolder pattern)
         {
             InitializeComponent();
             ViewMap = new Dictionary<TreeViewItem, IHolder>();
@@ -52,22 +52,26 @@ namespace FDFEditor.Control
             }
             root.ExpandSubtree();
             TreeView.Items.Add(root);
+            Pattern = pattern;
         }
 
         private void TabItemSelected(object sender, RoutedEventArgs e)
         {
             ViewHolder.Items.Clear();
-            Console.WriteLine(sender + " " + ViewMap[(TreeViewItem)sender]);
             ViewHolder.Items.Add(ViewMap[(TreeViewItem)sender].GetView());
             e.Handled = true;
         }
 
-        public string Title { get; set; }
-        public PatternHolder Pattern;
+        public PatternHolder Pattern { get; private set; }
 
         public void Save()
         {
 
+        }
+
+        public string GetPlainText()
+        {
+            return Pattern.GetString();
         }
     }
 }

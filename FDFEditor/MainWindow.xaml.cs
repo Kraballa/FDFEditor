@@ -5,6 +5,7 @@ using System;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 
 namespace FDFEditor
 {
@@ -14,23 +15,57 @@ namespace FDFEditor
     public partial class MainWindow : Window
     {
         private string pathToData;
-        private PatternHolder pHolder;
 
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void OpenFile(string path)
+        private void OpenAsPattern(string path, bool encrypted = true)
         {
             try
             {
                 //decrypt and parse
-                Stream s = Crypt.Decrypt(path);
-                pHolder = PatternHolder.Parse(s);
+                Stream s;
+                if (encrypted)
+                {
+                    s = Crypt.Decrypt(path);
+                }
+                else
+                {
+                    s = new MemoryStream(File.ReadAllBytes(path));
+                }
+                PatternHolder pHolder = PatternHolder.Parse(s);
                 TabItem tab = new TabItem();
                 tab.Header = Path.GetFileName(path);
-                tab.Content = new XnaTabItem(pHolder);
+                tab.Content = new PatternTabItem(pHolder);
+                MainTabControl.Items.Add(tab);
+                MainTabControl.SelectedIndex = MainTabControl.Items.IndexOf(tab);
+            }
+            catch (Exception)
+            {
+                string text = "Error parsing file. Either it's invalid or it was already decrypted.";
+                MessageBox.Show(text, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void OpenAsText(string path, bool encrypted = true)
+        {
+            try
+            {
+                //decrypt and parse
+                Stream s;
+                if (encrypted)
+                {
+                    s = Crypt.Decrypt(path);
+                }
+                else
+                {
+                    s = new MemoryStream(File.ReadAllBytes(path));
+                }
+                TabItem tab = new TabItem();
+                tab.Header = Path.GetFileName(path);
+                tab.Content = new TextEditorTabItem(s);
                 MainTabControl.Items.Add(tab);
                 MainTabControl.SelectedIndex = MainTabControl.Items.IndexOf(tab);
             }
@@ -48,15 +83,18 @@ namespace FDFEditor
                 dialog.InitialDirectory = pathToData;
             dialog.Filter = "Pattern Files (b*.xna)|b*.xna";
             dialog.Multiselect = true;
+            dialog.FileName = "b174.xna";
             if (dialog.ShowDialog() == true)
             {
                 foreach (string path in dialog.FileNames)
                 {
-                    OpenFile(path);
+                    OpenAsPattern(path);
                     pathToData = Path.GetFullPath(path);
                 }
             }
         }
+
+
 
         private void CloseCommand(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
         {
@@ -77,13 +115,14 @@ namespace FDFEditor
 
         private void SaveCommand(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
         {
-            if (pHolder == null)
+            if (MainTabControl.Items.Count == 0)
             {
-                MessageBox.Show("no pattern opened", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("no file opened", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
             {
-                Console.WriteLine(pHolder.GetString());
+                string text = ((ITabItem)MainTabControl.Items[MainTabControl.SelectedIndex]).GetPlainText();
+                Console.WriteLine(text);
             }
             //generate file content
             //encrypt
@@ -125,9 +164,52 @@ namespace FDFEditor
                 if (saveDialog.ShowDialog() == true)
                 {
                     string to = saveDialog.FileName;
-                    Crypt.DecryptAndMove(from, to);
+                    try
+                    {
+                        Crypt.DecryptAndMove(from, to);
+                    }
+                    catch (Exception)
+                    {
+                        string text = "Error decrypting file. It probably used a different key for encryption.";
+                        MessageBox.Show(text, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
             }
+        }
+
+        private void OpenAsText(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            if (pathToData != null)
+                dialog.InitialDirectory = pathToData;
+            dialog.Filter = "Encrypted Files (*.xna)|*.xna|Plain Text Files (*.txt)|*.txt";
+            dialog.Multiselect = true;
+            dialog.FileName = "s1.xna";
+            if (dialog.ShowDialog() == true)
+            {
+                foreach (string path in dialog.FileNames)
+                {
+                    if (Path.GetExtension(path).Contains("xna"))
+                    {
+                        OpenAsText(path);
+                    }
+                    else
+                    {
+                        OpenAsText(path, false);
+                    }
+
+                    pathToData = Path.GetFullPath(path);
+                }
+            }
+        }
+
+        private void OpenScratchpad(object sender, RoutedEventArgs e)
+        {
+            TabItem tab = new TabItem();
+            tab.Header = "Scratchpad";
+            tab.Content = new TextEditorTabItem("Scratchpad |\n-----------+\n");
+            MainTabControl.Items.Add(tab);
+            MainTabControl.SelectedIndex = MainTabControl.Items.IndexOf(tab);
         }
     }
 }

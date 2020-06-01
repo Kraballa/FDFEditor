@@ -10,10 +10,10 @@
         <local:TitledTextBox Title="name" Text="{Binding Path=name}"/>
         <local:TitledTextBox Title="begin" Text="{Binding Path=begin}"/>
         <local:TitledTextBox Title="end" Text="{Binding Path=end}"/>
-        <local:TitledTextBox Title="numShots" Text="{Binding Path=numShots}"/>
-        <local:TitledTextBox Title="numLasers" Text="{Binding Path=numLasers}"/>
-        <local:TitledTextBox Title="numCovers" Text="{Binding Path=numCovers}"/>
-        <local:TitledTextBox Title="numRebounds" Text="{Binding Path=numRebounds}"/>
-        <local:TitledTextBox Title="numForces" Text="{Binding Path=numForces}"/>
+        <local:TitledTextBox Title="numShots" Text="{Binding Path=numThings[0]}"/>
+        <local:TitledTextBox Title="numLasers" Text="{Binding Path=numThings[1]}"/>
+        <local:TitledTextBox Title="numCovers" Text="{Binding Path=numThings[2]}"/>
+        <local:TitledTextBox Title="numRebounds" Text="{Binding Path=numThings[3]}"/>
+        <local:TitledTextBox Title="numForces" Text="{Binding Path=numThings[4]}"/>
     </StackPanel>
 </UserControl>

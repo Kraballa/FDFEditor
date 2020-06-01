@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:uc="clr-namespace:FDFEditor.Control"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="700" d:DesignWidth="800">
     <UserControl.Resources>
         <Style x:Key="tbStyle" TargetType="TextBox">
             <Setter Property="MinWidth" Value="60" />
@@ -103,11 +103,11 @@
             <uc:TitledTextBox Title="rand.sonaspeed" Text="{Binding Path=fields[68]}"/>
             <uc:TitledTextBox Title="rand.sonaspeedd" Text="{Binding Path=fields[69]}"/>
         </WrapPanel>
-        <!--<WrapPanel Orientation="Horizontal" Style="{StaticResource spStyle}">
-            <uc:TitledTextBox Title="Cover" Text="{Binding Path=fields[70]}"/>
-            <uc:TitledTextBox Title="Rebound" Text="{Binding Path=fields[71]}"/>
-            <uc:TitledTextBox Title="Force" Text="{Binding Path=fields[72]}"/>
-            <uc:TitledTextBox Title="Deepbind" Text="{Binding Path=fields[73]}"/>
-        </WrapPanel>-->
+        <WrapPanel Orientation="Horizontal" Style="{StaticResource spStyle}">
+            <uc:TitledTextBox Title="Cover" Text="{Binding Path=CoverSafe}"/>
+            <uc:TitledTextBox Title="Rebound" Text="{Binding Path=ReboundDafe}"/>
+            <uc:TitledTextBox Title="Force" Text="{Binding Path=ForceSave}"/>
+            <uc:TitledTextBox Title="Deepbind" Text="{Binding Path=DeepbindSave}"/>
+        </WrapPanel>
     </StackPanel>
 </UserControl>
