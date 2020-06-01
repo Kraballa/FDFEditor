@@ -14,6 +14,7 @@ namespace FDFEditor
     public partial class MainWindow : Window
     {
         private string pathToData;
+        private PatternHolder pHolder;
 
         public MainWindow()
         {
@@ -26,10 +27,10 @@ namespace FDFEditor
             {
                 //decrypt and parse
                 Stream s = Crypt.Decrypt(path);
-                PatternHolder p = PatternHolder.Parse(s);
+                pHolder = PatternHolder.Parse(s);
                 TabItem tab = new TabItem();
                 tab.Header = Path.GetFileName(path);
-                tab.Content = new XnaTabItem(p);
+                tab.Content = new XnaTabItem(pHolder);
                 MainTabControl.Items.Add(tab);
                 MainTabControl.SelectedIndex = MainTabControl.Items.IndexOf(tab);
             }
@@ -38,13 +39,6 @@ namespace FDFEditor
                 string text = "Error parsing file. Either it's invalid or it was already decrypted.";
                 MessageBox.Show(text, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-        }
-
-        private void SaveFile(string path)
-        {
-            //generate file content
-            //encrypt
-            //write to disk
         }
 
         private void OpenCommand(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
@@ -79,6 +73,21 @@ namespace FDFEditor
         private void ExitCommand(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
         {
             System.Windows.Application.Current.Shutdown();
+        }
+
+        private void SaveCommand(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
+        {
+            if (pHolder == null)
+            {
+                MessageBox.Show("no pattern opened", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                Console.WriteLine(pHolder.GetString());
+            }
+            //generate file content
+            //encrypt
+            //write to disk
         }
 
         private void ToolEncrypt(object sender, RoutedEventArgs e)

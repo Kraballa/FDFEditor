@@ -9,17 +9,18 @@ namespace FDFEditor.Backend
 {
     public class LayerHolder : IHolder
     {
-        public List<BatchHolder> Batches;
+        public List<ILayerContent> Content;
 
         public string name { get; set; }
         public string begin { get; set; }
         public string end { get; set; }
 
         private LayerView View;
+        private string index;
 
         private LayerHolder()
         {
-            Batches = new List<BatchHolder>();
+            Content = new List<ILayerContent>();
         }
 
         public static LayerHolder Parse(ref StreamReader stream)
@@ -30,22 +31,42 @@ namespace FDFEditor.Backend
             if (str1[0].Contains("empty"))
                 return l;
 
+            l.index = str1[0].Split(':')[0].Replace("Layer", "");
             l.name = str1[0].Split(':')[1];
             l.begin = str1[1];
             l.end = str1[2];
-            int numBatches = int.Parse(str1[3]);
 
-            for (int i = 0; i < numBatches; i++)
+            int num1 = int.Parse(str1[3]);
+            for (int i = 0; i < num1; i++)
             {
-                try
-                {
-                    l.Batches.Add(BatchHolder.Parse(stream.ReadLine()));
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("error while parsing batch " + i, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+                l.Content.Add(BatchHolder.Parse(stream.ReadLine()));
             }
+
+            num1 = int.Parse(str1[4]);
+            for (int i = 0; i < num1; i++)
+            {
+                l.Content.Add(BatchHolder.Parse(stream.ReadLine()));
+            }
+
+            num1 = int.Parse(str1[5]);
+            for (int i = 0; i < num1; i++)
+            {
+                l.Content.Add(BatchHolder.Parse(stream.ReadLine()));
+            }
+
+            num1 = int.Parse(str1[6]);
+            for (int i = 0; i < num1; i++)
+            {
+                l.Content.Add(BatchHolder.Parse(stream.ReadLine()));
+            }
+
+            num1 = int.Parse(str1[7]);
+            for (int i = 0; i < num1; i++)
+            {
+                l.Content.Add(BatchHolder.Parse(stream.ReadLine()));
+            }
+
+
             l.View = new LayerView(l);
             return l;
         }
@@ -57,16 +78,16 @@ namespace FDFEditor.Backend
 
         public string GetString()
         {
-            string ret = "Layer:";
-            if (Batches.Count == 0)
+            string ret = "Layer" + index + ":";
+            if (Content.Count == 0)
             {
                 ret += "empty\n";
                 return ret;
             }
             else
             {
-                ret += string.Format("{0},{1},{2},{3},0,0,0,0\n", name, begin, end, Batches.Count);
-                foreach (BatchHolder b in Batches)
+                ret += string.Format("{0},{1},{2},{3},0,0,0,0\n", name, begin, end, Content.Count);
+                foreach (BatchHolder b in Content)
                 {
                     ret += b.GetString();
                 }

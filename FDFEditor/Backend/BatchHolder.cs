@@ -8,19 +8,28 @@ namespace FDFEditor.Backend
     /// <summary>
     /// A batch is a group of bullets that are contained within Layers within a Pattern
     /// </summary>
-    public class BatchHolder : IHolder
+    public class BatchHolder : IHolder, ILayerContent
     {
-        private BatchView View;
 
+        #region values
+
+        public string[] fields;
+
+        #endregion
+
+        private BatchView View;
         private BatchHolder() { }
 
         public static BatchHolder Parse(string batch)
         {
             BatchHolder b = new BatchHolder();
+            string[] str = batch.Split(',');
 
-
-
-            //parse stuff
+            b.fields = new string[str.Length];
+            for (int i = 0; i < str.Length; i++)
+            {
+                b.fields[i] = str[i];
+            }
 
             b.View = new BatchView(b);
             return b;
@@ -28,7 +37,7 @@ namespace FDFEditor.Backend
 
         public string GetString()
         {
-            throw new NotImplementedException();
+            return string.Join(',', fields) + "\n";
         }
 
         public IView GetView()

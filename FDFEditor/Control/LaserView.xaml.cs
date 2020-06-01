@@ -15,15 +15,15 @@ using System.Windows.Shapes;
 namespace FDFEditor.Control
 {
     /// <summary>
-    /// Interaktionslogik für LayerView.xaml
+    /// Interaktionslogik für LaserView.xaml
     /// </summary>
-    public partial class LayerView : UserControl, IView
+    public partial class LaserView : UserControl, IView
     {
-        private LayerHolder holder;
-        public LayerView(LayerHolder holder)
+        private LaserHolder holder;
+        public LaserView(LaserHolder holder)
         {
             InitializeComponent();
-            this.DataContext = holder;
+            DataContext = holder;
             this.holder = holder;
         }
     }

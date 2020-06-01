@@ -27,19 +27,25 @@ namespace FDFEditor.Control
             ViewMap = new Dictionary<TreeViewItem, IHolder>();
             TreeViewItem root = new TreeViewItem();
             root.Header = "root";
+            root.Selected += TabItemSelected;
             ViewMap.Add(root, pattern);
             for (int i = 0; i < pattern.Layers.Length; i++)
             {
                 TreeViewItem layerItem = new TreeViewItem();
                 layerItem.Header = "layer " + i;
                 ViewMap.Add(layerItem, pattern.Layers[i]);
-                foreach (BatchHolder b in pattern.Layers[i].Batches)
+                foreach (ILayerContent b in pattern.Layers[i].Content)
                 {
-                    TreeViewItem batchItem = new TreeViewItem();
-                    batchItem.Header = "batch";
-                    ViewMap.Add(batchItem, b);
-                    batchItem.Selected += TabItemSelected;
-                    layerItem.Items.Add(batchItem);
+                    TreeViewItem contentItem = new TreeViewItem();
+                    switch (b)
+                    {
+                        case BatchHolder bh:
+                            contentItem.Header = "batch";
+                            ViewMap.Add(contentItem, (BatchHolder)b);
+                            break;
+                    }
+                    contentItem.Selected += TabItemSelected;
+                    layerItem.Items.Add(contentItem);
                 }
                 layerItem.Selected += TabItemSelected;
                 root.Items.Add(layerItem);

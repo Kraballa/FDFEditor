@@ -6,7 +6,28 @@
              xmlns:local="clr-namespace:FDFEditor.Control"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style x:Key="tbStyle" TargetType="TextBox">
+            <Setter Property="MinWidth" Value="60" />
+            <Setter Property="Margin" Value="2"/>
+        </Style>
+        <Style x:Key="spStyle" TargetType="WrapPanel">
+            <Setter Property="Margin" Value="2 2 0 5"/>
+        </Style>
+    </UserControl.Resources>
     <StackPanel>
-        <TextBlock>BatchView</TextBlock>
+        <WrapPanel Orientation="Horizontal" Style="{StaticResource spStyle}">
+            <TextBox ToolTip="id" Text="{Binding Path=fields[0]}" Style="{StaticResource tbStyle}"/>
+            <TextBox ToolTip="parentid" Text="{Binding Path=fields[1]}" Style="{StaticResource tbStyle}"/>
+            <TextBox ToolTip="bound?" Text="{Binding Path=fields[2]}" Style="{StaticResource tbStyle}"/>
+            <TextBox ToolTip="bindid" Text="{Binding Path=fields[3]}" Style="{StaticResource tbStyle}"/>
+            <TextBox ToolTip="bindwithspeedd" Text="{Binding Path=fields[4]}" Style="{StaticResource tbStyle}"/>
+        </WrapPanel>
+        <WrapPanel Orientation="Horizontal">
+            <TextBox ToolTip="id" Text="{Binding Path=fields[0]}" Style="{StaticResource tbStyle}"/>
+        </WrapPanel>
+        <WrapPanel Orientation="Horizontal">
+
+        </WrapPanel>
     </StackPanel>
 </UserControl>

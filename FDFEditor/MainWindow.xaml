@@ -11,17 +11,20 @@
         <CommandBinding Command="Open" Executed="OpenCommand"/>
         <CommandBinding Command="Close" Executed="CloseCommand"/>
         <CommandBinding Command="Stop" Executed="ExitCommand"/>
+        <CommandBinding Command="Save" Executed="SaveCommand"/>
     </Window.CommandBindings>
     <Window.InputBindings>
         <KeyBinding Key="O" Modifiers="Control" Command="Open"/>
         <KeyBinding Key="C" Modifiers="Control" Command="Close"/>
         <KeyBinding Key="X" Modifiers="Control" Command="Stop"/>
+        <KeyBinding Key="S" Modifiers="Control" Command="Save"/>
     </Window.InputBindings>
 
     <DockPanel>
         <Menu DockPanel.Dock="Top" Width="Auto" Height="20">
             <MenuItem Header="_File">
                 <MenuItem Header="_New" />
+                <MenuItem Header="_Save" Command="Save" InputGestureText="Ctrl+S"/>
                 <MenuItem Header="_Open" Command="Open" InputGestureText="Ctrl+O"/>
                 <Separator/>
                 <MenuItem Header="_Close" Command="Close" InputGestureText="Ctrl+C"/>
