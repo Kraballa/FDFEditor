@@ -220,10 +220,14 @@ namespace FDFEditor
             if (tabItem == null)
                 return;
 
-            if (Mouse.PrimaryDevice.LeftButton == MouseButtonState.Pressed)
+            try
             {
-                DragDrop.DoDragDrop(tabItem, tabItem, DragDropEffects.All);
+                if (Mouse.PrimaryDevice.LeftButton == MouseButtonState.Pressed)
+                {
+                    DragDrop.DoDragDrop(tabItem, tabItem, DragDropEffects.All);
+                }
             }
+            catch (Exception) { }
         }
         private void TabItem_Drop(object sender, DragEventArgs e)
         {

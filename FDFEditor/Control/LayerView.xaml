@@ -7,13 +7,19 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel>
-        <local:TitledTextBox Title="name" Text="{Binding Path=name}"/>
-        <local:TitledTextBox Title="begin" Text="{Binding Path=begin}"/>
-        <local:TitledTextBox Title="end" Text="{Binding Path=end}"/>
-        <local:TitledTextBox Title="numShots" Text="{Binding Path=numThings[0]}"/>
-        <local:TitledTextBox Title="numLasers" Text="{Binding Path=numThings[1]}"/>
-        <local:TitledTextBox Title="numCovers" Text="{Binding Path=numThings[2]}"/>
-        <local:TitledTextBox Title="numRebounds" Text="{Binding Path=numThings[3]}"/>
-        <local:TitledTextBox Title="numForces" Text="{Binding Path=numThings[4]}"/>
+        <StackPanel Orientation="Horizontal" Margin="2 2 2 2">
+            <local:TitledTextBox Title="name" Text="{Binding Path=name}"/>
+            <local:TitledTextBox Title="begin" Text="{Binding Path=begin}"/>
+            <local:TitledTextBox Title="end" Text="{Binding Path=end}"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="2 2 2 2">
+            <local:TitledTextBox Title="numShots" Text="{Binding Path=numThings[0]}"/>
+            <local:TitledTextBox Title="numLasers" Text="{Binding Path=numThings[1]}"/>
+            <local:TitledTextBox Title="numCovers" Text="{Binding Path=numThings[2]}"/>
+            <local:TitledTextBox Title="numRebounds" Text="{Binding Path=numThings[3]}"/>
+            <local:TitledTextBox Title="numForces" Text="{Binding Path=numThings[4]}"/>
+
+        </StackPanel>
+
     </StackPanel>
 </UserControl>
