@@ -64,11 +64,6 @@ namespace FDFEditor.Control
 
         public PatternHolder Pattern { get; private set; }
 
-        public void Save()
-        {
-
-        }
-
         public string GetPlainText()
         {
             return Pattern.GetString();

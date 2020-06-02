@@ -41,7 +41,7 @@
                 <MenuItem Header="new Scratchpad" Click="OpenScratchpad"/>
             </MenuItem>
         </Menu>
-        <TabControl x:Name="MainTabControl">
+        <TabControl x:Name="MainTabControl" >
 
         </TabControl>
     </DockPanel>
