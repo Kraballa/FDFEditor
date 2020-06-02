@@ -3,6 +3,8 @@
 This is a toolbox for modding the Touhou fangame "東方幕華祭 春雪篇 ～ Fantastic Danmaku Festival Part II".
 It currently can't edit files of the first title in the series. 
 
+Repository at "https://github.com/Kraballa/FDFEditor"
+
 If you don't know what you're doing, take a look at the modding guide for some pointers and study the game files yourself.
 Sometimes it might be required to take a look at the games code to figure out what something does.
 
@@ -28,5 +30,11 @@ Planned aditions:
 -some kind of logging system to see what changes have been made
 -some kind of backup system in case a change breaks the game
 
+Current Usability Issues:
+-no warning when closing unsaved changes
+-saving files doesn't provide a default filename
+-closing tabs is clunky
+-
+
 THIS TOOL WAS MADE WITH GOOD INTENTIONS. DO NOT USE IT FOR MALICIOUS PURPOSES. I WILL TAKE NO RESPONSIBILITY
-FOR ANY LEGAL ACTIONS BROUGHT AGAINST YOU BECAUSE OF THIS TOOLBOX.
+FOR ANY LEGAL ACTIONS BROUGHT AGAINST YOU.

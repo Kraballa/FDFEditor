@@ -6,13 +6,29 @@
     <UseWPF>true</UseWPF>
     <ApplicationIcon />
     <StartupObject>FDFEditor.App</StartupObject>
+    <Description>Editor for the game "Touhou Fantastic Danmaku Festival 2"</Description>
+    <Copyright>GPL-3</Copyright>
+    <PackageLicenseFile></PackageLicenseFile>
+    <PackageProjectUrl></PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Kraballa/FDFEditor</RepositoryUrl>
+    <NeutralLanguage></NeutralLanguage>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="Resources\About.txt">
+    <Compile Remove="bin\**" />
+    <EmbeddedResource Remove="bin\**" />
+    <None Remove="bin\**" />
+    <Page Remove="bin\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Resources\License.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\License.txt">
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Resources\About.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Resources\Modding Guide.txt">

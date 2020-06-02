@@ -25,10 +25,10 @@
             <MenuItem Header="_File">
                 <MenuItem Header="_New" />
                 <MenuItem Header="_Save" Command="Save" InputGestureText="Ctrl+S"/>
-                <MenuItem Header="_Open Pattern" Command="Open"/>
+                <!--<MenuItem Header="_Open Pattern" Command="Open"/>-->
                 <MenuItem Header="Open As Text" Click="OpenAsText"/>
                 <Separator/>
-                <MenuItem Header="_Close" Command="Close" InputGestureText="Ctrl+C"/>
+                <MenuItem Header="_Close" Command="Close"/>
                 <Separator/>
                 <MenuItem Header="E_xit" Command="Stop" InputGestureText="Ctrl+X"/>
             </MenuItem>
@@ -44,7 +44,6 @@
             </MenuItem>
             <MenuItem Header="Help">
                 <MenuItem Header="About" Click="OpenAbout"/>
-                <MenuItem Header="View GitHub"/>
                 <MenuItem Header="Modding Guide" Click="OpenModdingGuide"/>
                 <Separator/>
                 <MenuItem Header="License (GPL3)" Click="OpenLicense"/>
