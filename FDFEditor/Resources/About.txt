@@ -24,6 +24,9 @@ Some more assumptions this program makes:
 -all files are stored in a valid format that the game can read
 -all .xna files are encrypted to the FDF2 private keys, all other files are in plain text. Check out Tools > Decrypt/Encrypt in other cases
 
+Planned aditions:
+-some kind of logging system to see what changes have been made
+-some kind of backup system in case a change breaks the game
 
 THIS TOOL WAS MADE WITH GOOD INTENTIONS. DO NOT USE IT FOR MALICIOUS PURPOSES. I WILL TAKE NO RESPONSIBILITY
 FOR ANY LEGAL ACTIONS BROUGHT AGAINST YOU BECAUSE OF THIS TOOLBOX.

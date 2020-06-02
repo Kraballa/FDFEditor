@@ -29,7 +29,7 @@ namespace FDFEditor
                 Stream s;
                 if (encrypted)
                 {
-                    s = Crypt.Decrypt(path);
+                    s = Crypt.OpenCryptFile(path, encrypted, FDF1Checkbox.IsChecked);
                 }
                 else
                 {
@@ -52,7 +52,7 @@ namespace FDFEditor
                 Stream s;
                 if (encrypted)
                 {
-                    s = Crypt.Decrypt(path);
+                    s = Crypt.OpenCryptFile(path, true, FDF1Checkbox.IsChecked);
                 }
                 else
                 {
@@ -89,7 +89,8 @@ namespace FDFEditor
         {
             if (MainTabControl.Items.Count > 0)
             {
-                MainTabControl.Items.RemoveAt(MainTabControl.SelectedIndex);
+                Console.WriteLine(MainTabControl.SelectedIndex);
+                MainTabControl.Items.Remove(MainTabControl.SelectedItem);
             }
             else
             {
@@ -110,12 +111,31 @@ namespace FDFEditor
             }
             else
             {
-                string text = ((ITabItem)MainTabControl.Items[MainTabControl.SelectedIndex]).GetPlainText();
+                ITabItem current = (ITabItem)MainTabControl.SelectedContent;
+                string text = current.GetPlainText();
                 Console.WriteLine(text);
+                SaveFileDialog saveDialog = new SaveFileDialog();
+                saveDialog.Filter = "Xna File (*.xna)|*.xna|Text File (*.txt)|*.txt";
+                saveDialog.Title = "Save As";
+                if (saveDialog.ShowDialog() == true)
+                {
+                    try
+                    {
+                        if (Path.GetExtension(saveDialog.FileName).Contains("xna"))
+                        {
+                            Crypt.CryptToFile(saveDialog.FileName, text, FDF1Checkbox.IsChecked);
+                        }
+                        else
+                        {
+                            File.WriteAllText(saveDialog.FileName, text);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Something went wrong.\n" + ex, "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                }
             }
-            //generate file content
-            //encrypt
-            //write to disk
         }
 
         private void ToolEncrypt(object sender, RoutedEventArgs e)
@@ -133,7 +153,7 @@ namespace FDFEditor
                 if (saveDialog.ShowDialog() == true)
                 {
                     string to = saveDialog.FileName;
-                    Crypt.EncryptAndMove(from, to);
+                    Crypt.CryptAndMove(from, to, false, FDF1Checkbox.IsChecked);
                 }
             }
         }
@@ -155,7 +175,7 @@ namespace FDFEditor
                     string to = saveDialog.FileName;
                     try
                     {
-                        Crypt.DecryptAndMove(from, to);
+                        Crypt.CryptAndMove(from, to, true, FDF1Checkbox.IsChecked);
                     }
                     catch (Exception ex)
                     {
@@ -251,6 +271,21 @@ namespace FDFEditor
             tab.Content = content;
             MainTabControl.Items.Add(tab);
             MainTabControl.SelectedIndex = MainTabControl.Items.IndexOf(tab);
+        }
+
+        private void FDFCheckbox_Click(object sender, RoutedEventArgs e)
+        {
+            MenuItem cb = sender as MenuItem;
+            if (cb.Name.Contains("FDF1"))
+            {
+                FDF1Checkbox.IsChecked = true;
+                FDF2Checkbox.IsChecked = false;
+            }
+            else
+            {
+                FDF1Checkbox.IsChecked = false;
+                FDF2Checkbox.IsChecked = true;
+            }
         }
     }
 }

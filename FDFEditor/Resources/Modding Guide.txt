@@ -18,14 +18,14 @@ Batch = Pattern files contain enormeously long lines. Those most likely define B
 [2] Filenames and what their content is
 
 All files found in Content/Data
-example	    |  content          | filename pattern
+example     |  content          | filename pattern
 ------------+-------------------+---------------------
-102.xna	    |  stage script     | <xyz>.xna, x = stage (1-6 + extra + phantasm), y = 0, z = difficulty (easy = 1, lunatic = 4)
+102.xna     |  stage script     | <xyz>.xna, x = stage (1-6 + extra + phantasm), y = 0, z = difficulty (easy = 1, lunatic = 4)
 b174.xna    |  pattern script   | b<xyz>.xna, x = stage (1-6 + extra + phantasm), yz = some sort of index. View stage files for figuring out all the spells and non-spells the boss uses.
-bg.xna	    |  no idea	        | bg.xna, there's only one file. It probably has to do with CrazyStorm
-d<xyz>.xna  |  dialogue files   | d<xyz>.xna, x = stage (1-6 + extra + phantasm), y = language (1 = english, 0 = chinese), z = player character (1-4 as Reimu, Marisa, Sanae, Youmu)
-e<xyz>.xna  |  no idea	        | probably some CrazyStorm data again
-s<x>.xna    |  spell list       | s<x>.xna, x = difficulty (1-4 as easy - lunatic + extra + phantasm), used exclusively for spell practice
+bg.xna      |  no idea          | bg.xna, there's only one file. It probably has to do with CrazyStorm
+d212.xna    |  dialogue files   | d<xyz>.xna, x = stage (1-6 + extra + phantasm), y = language (1 = english, 0 = chinese), z = player character (1-4 as Reimu, Marisa, Sanae, Youmu)
+e21.xna     |  no idea          | probably some CrazyStorm data again
+s2.xna      |  spell list       | s<x>.xna, x = difficulty (1-4 as easy - lunatic + extra + phantasm), used exclusively for spell practice
 
 
 [3] Pattern File Format
@@ -40,7 +40,7 @@ Pattern Definition
 >>Batches       - A group of bullets with similar behavior
 >>Lasers        - A group of lasers with similar behavior
 >>Covers        - not sure, maybe entities that remove bullets upon contact?
->>Rebounds	    - not sure, maybe making stuff bounce off of walls?
+>>Rebounds      - not sure, maybe making stuff bounce off of walls?
 >>Forces        - not sure, probably for influencing movement of the above.
 
 If you take a look at the plain text version of a pattern file you'll see lines like this:

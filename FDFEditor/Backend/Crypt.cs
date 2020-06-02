@@ -9,124 +9,64 @@ namespace FDFEditor.Backend
     public static class Crypt
     {
 
-        private static byte[][] Keys = new byte[4][]
+        public enum Game
         {
-          new byte[16]
-          {
-            (byte) 202,
-            (byte) 144,
-             216,
-            (byte) 211,
-            (byte) 188,
-            (byte) 214,
-            (byte) 244,
-            (byte) 180,
-            (byte) 174,
-            (byte) 194,
-            (byte) 188,
-            (byte) 101,
-            (byte) 40,
-            (byte) 22,
-            (byte) 189,
-            (byte) 183
-          },
-          new byte[16]
-          {
-            (byte) 61,
-            (byte) 88,
-            (byte) 123,
-            (byte) 71,
-            (byte) 96,
-            (byte) 236,
-            (byte) 242,
-            (byte) 152,
-            (byte) 50,
-            (byte) 42,
-            (byte) 213,
-            (byte) 5,
-            (byte) 171,
-            (byte) 156,
-            (byte) 175,
-            (byte) 190
-          },
-          new byte[16]
-          {
-            (byte) 77,
-            (byte) 60,
-            (byte) 63,
-            (byte) 80,
-            (byte) 18,
-            (byte) 58,
-            (byte) 69,
-            (byte) 119,
-            (byte) 137,
-            (byte) 140,
-            (byte) 117,
-            (byte) 143,
-            (byte) 126,
-            (byte) 158,
-            (byte) 17,
-            (byte) 135
-          },
-          new byte[16]
-          {
-            (byte) 242,
-            (byte) 165,
-            (byte) 41,
-            (byte) 132,
-            (byte) 231,
-            (byte) 150,
-            (byte) 148,
-            (byte) 35,
-            (byte) 220,
-            (byte) 80,
-            (byte) 204,
-            (byte) 233,
-            (byte) 36,
-            (byte) 174,
-            (byte) 251,
-            (byte) 77
-          }
+            FDF1,
+            FDF2
+        }
+
+        private static byte[][] FDF2Keys = new byte[4][]
+        {
+            new byte[16]{202,144,216,211,188,214,244,180,174,194,188,101,40,22,189,183},
+            new byte[16]{61,88,123,71,96,236,242,152,50,42,213,5,171,156,175,190},
+            new byte[16]{77,60,63,80,18,58,69,119,137,140,117,143,126,158,17,135},
+            new byte[16]{242,165,41,132,231,150,148,35,220,80,204,233,36,174,251,77}
+        };
+        private static byte[][] FDF1Keys = new byte[4][]
+            {
+            new byte[16]{79,14,42,91,9,12,143,221,62,193,178,163,byte.MaxValue,162,5,7},
+            new byte[16]{28,91,61,0,5,4,127,187,204,45,195,212,170,241,242,248},
+            new byte[16]{204,219,153,8,byte.MaxValue,250,154,184,199,109,227,171,202,253,254,250},
+            new byte[16]{79,145,221,238,198,51,249,164,187,17,252,13,241,184,23,0}
         };
 
-        public static Stream Decrypt(string FileName, int type = 2)
+        public static Stream OpenCryptFile(string path, bool decrypt = true, bool fdf1 = false, int type = 2)
         {
-            byte[] numArray = File.ReadAllBytes(FileName);
-            TripleDESCryptoServiceProvider cryptoServiceProvider = new TripleDESCryptoServiceProvider();
-            cryptoServiceProvider.Key = Crypt.Keys[type];
-            cryptoServiceProvider.Mode = CipherMode.ECB;
-            ICryptoTransform decryptor = cryptoServiceProvider.CreateDecryptor();
-            return (Stream)new MemoryStream(decryptor.TransformFinalBlock(numArray, 0, numArray.Length));
+            byte[] content = File.ReadAllBytes(path);
+            return CryptBuffer(content, decrypt, fdf1, type);
         }
 
-        public static void DecryptAndMove(string from, string to, int type = 2)
+        public static Stream CryptBuffer(byte[] buffer, bool decrypt = true, bool fdf1 = false, int type = 2)
         {
-            byte[] inputBuffer = File.ReadAllBytes(from);
             TripleDESCryptoServiceProvider cryptoServiceProvider = new TripleDESCryptoServiceProvider();
-            cryptoServiceProvider.Key = Crypt.Keys[type];
+            cryptoServiceProvider.Key = fdf1 ? FDF1Keys[type] : FDF2Keys[type];
             cryptoServiceProvider.Mode = CipherMode.ECB;
-            byte[] buffer = cryptoServiceProvider.CreateDecryptor().TransformFinalBlock(inputBuffer, 0, inputBuffer.Length);
-            FileStream fileStream = File.Create(to);
-            fileStream.Write(buffer, 0, buffer.GetLength(0));
-            fileStream.Close();
+            ICryptoTransform decryptor = decrypt ? cryptoServiceProvider.CreateDecryptor() : cryptoServiceProvider.CreateEncryptor();
+            return (Stream)new MemoryStream(decryptor.TransformFinalBlock(buffer, 0, buffer.Length));
         }
 
-        public static void EncryptAndMove(string from, string to, int type = 2)
+        public static void CryptToFile(string path, string content, bool fdf1 = false, int type = 2)
         {
-            byte[] inputBuffer = File.ReadAllBytes(from);
+            File.WriteAllText(path, content);
+            EncryptFile(path, fdf1, type);
+        }
+
+        public static void CryptAndMove(string from, string to, bool decrypt = true, bool fdf1 = false, int type = 2)
+        {
+            string content = new StreamReader(Crypt.OpenCryptFile(from, decrypt, fdf1, type)).ReadToEnd();
+            File.WriteAllText(to, content);
+        }
+
+        public static void EncryptFile(string FileName, bool fdf1 = false, int type = 2)
+        {
+            byte[] inputBuffer = File.ReadAllBytes(FileName);
             TripleDESCryptoServiceProvider cryptoServiceProvider = new TripleDESCryptoServiceProvider();
-            cryptoServiceProvider.Key = Crypt.Keys[type];
+            cryptoServiceProvider.Key = fdf1 ? FDF1Keys[type] : FDF2Keys[type];
             cryptoServiceProvider.Mode = CipherMode.ECB;
             byte[] buffer = cryptoServiceProvider.CreateEncryptor().TransformFinalBlock(inputBuffer, 0, inputBuffer.Length);
-            FileStream fileStream = File.Create(to);
+            FileStream fileStream = File.Create(FileName);
             fileStream.Write(buffer, 0, buffer.GetLength(0));
             fileStream.Close();
-        }
-
-        private static string Cuts(string word, string num, int array)
-        {
-            char[] charArray = num.ToCharArray();
-            return word.Split(charArray)[array - 1];
         }
     }
 }
