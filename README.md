@@ -8,9 +8,10 @@ Written in .net core using WPF. GPL-3 license.
 3. Handy notepad for all your copy pasting needs.
 
 ## Installation
-1. Buy the game on Steam [here](https://store.steampowered.com/app/1031480/___Fantastic_Danmaku_Festival_Part_II/)
-2. Download and install the Windows Dotnet Core Desktop 3.1.4 Runtime [here](https://dotnet.microsoft.com/download/dotnet-core/3.1/runtime/?utm_source=getdotnetcore&utm_medium=referral)
+1. buy the game on Steam [here](https://store.steampowered.com/app/1031480/___Fantastic_Danmaku_Festival_Part_II/)
+2. download and install the Windows Dotnet Core Desktop 3.1.4 Runtime [here](https://dotnet.microsoft.com/download/dotnet-core/3.1/runtime/?utm_source=getdotnetcore&utm_medium=referral)
 3. download the lastest version [here](https://github.com/Kraballa/FDFEditor/releases)
+4. run the exe
 
 Please make sure to read the About page found under the Help menu after first opening the app. For some general guidelines and tips consult the Modding Guide, also found under the Help menu.
 
