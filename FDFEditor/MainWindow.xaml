@@ -44,7 +44,7 @@
             <MenuItem Header="Help">
                 <MenuItem Header="About" Click="OpenAbout"/>
                 <MenuItem Header="View GitHub"/>
-                <MenuItem Header="Modding Guide"/>
+                <MenuItem Header="Modding Guide" Click="OpenModdingGuide"/>
                 <Separator/>
                 <MenuItem Header="License (GPL3)" Click="OpenLicense"/>
             </MenuItem>

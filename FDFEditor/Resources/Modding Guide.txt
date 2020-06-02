@@ -1,0 +1,77 @@
+﻿MODDING GUIDE v1.0
+
+Content:
+[1] General Names and such
+[2] Filenames and what their content is
+[3] Pattern File Format
+[4] Stage File Format
+
+
+[1] General Names and such
+
+CrazyStorm = I've dubbed the bullet engine CrazyStorm mainly because the class CrazyStorm.cs in the game code is responsible for parsing pattern scripts
+Pattern = A spellcard or non-spellcard for bosses, and attack pattern for regular enemies
+Stage Script = A script that dictates enemy spawn behavior and what spells/non-spells the midboss and boss uses.
+Batch = Pattern files contain enormeously long lines. Those most likely define Batch behavior but some do not.
+
+
+[2] Filenames and what their content is
+
+All files found in Content/Data
+example	    |  content          | filename pattern
+------------+-------------------+---------------------
+102.xna	    |  stage script     | <xyz>.xna, x = stage (1-6 + extra + phantasm), y = 0, z = difficulty (easy = 1, lunatic = 4)
+b174.xna    |  pattern script   | b<xyz>.xna, x = stage (1-6 + extra + phantasm), yz = some sort of index. View stage files for figuring out all the spells and non-spells the boss uses.
+bg.xna	    |  no idea	        | bg.xna, there's only one file. It probably has to do with CrazyStorm
+d<xyz>.xna  |  dialogue files   | d<xyz>.xna, x = stage (1-6 + extra + phantasm), y = language (1 = english, 0 = chinese), z = player character (1-4 as Reimu, Marisa, Sanae, Youmu)
+e<xyz>.xna  |  no idea	        | probably some CrazyStorm data again
+s<x>.xna    |  spell list       | s<x>.xna, x = difficulty (1-4 as easy - lunatic + extra + phantasm), used exclusively for spell practice
+
+
+[3] Pattern File Format
+
+Pattern files follow a hierarchy:
+Pattern Definition
+>Type Definition
+>Global Event Definition (optional)
+>Sounds Definition (optional)
+>Center Definition (optional)
+>Layers (4 of them)
+>>Batches       - A group of bullets with similar behavior
+>>Lasers        - A group of lasers with similar behavior
+>>Covers        - not sure, maybe entities that remove bullets upon contact?
+>>Rebounds	    - not sure, maybe making stuff bounce off of walls?
+>>Forces        - not sure, probably for influencing movement of the above.
+
+If you take a look at the plain text version of a pattern file you'll see lines like this:
+Layer1:新图层 ,1,680,6,0,0,0,0
+This is a layer definition and contains the following parameters:
+Layer<index>:<name>,<startframe>,<endframe>,<number of Batch definitions>, <number of Laser definitions>, <numCover>,<numRebound>,<numForces>
+So when you see numBatches = 6 the following 6 lines all define batch behavior and have indices counting up. If numLaser = 3 for example
+after the batch definitions will be that amount of laser definitions, again counting up indices.
+In the Pattern View you'll see an item below a layer item for every one of those definitions. Click on them and you can see all the parameters it uses.
+
+Pattern files have 2 fields relating to events in every batch (etc.) definition. They seem to be general control structures like greater-than,
+but since they're in chinese there's nothing really we can do about it. They're hardcoded. There's potential for an additional view 
+just for editing these but that would require more work and a translator. So for now they're black boxes, atleast for me.
+
+
+[4] Stage File Format
+
+Stage files are essentially their own scripting language. They operate entirely on relative Timestamps:
+[0:00:00]
+[minute:seconds:1/100 seconds]
+
+From here on [] refers to a timestamp.
+Some more functions:
+//this is a commentary line and ignored by the engine
+[]PlayMusic(<something>) //probably name
+[]LoadBackGround
+[]ShowTitle
+
+For [] To [] Step []
+{
+<stuff> //the timestamp gets filled in automatically
+}
+
+Best you just look through the stage scripts yourself and the game's code to see how it all works.

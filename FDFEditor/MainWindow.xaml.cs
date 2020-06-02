@@ -207,6 +207,11 @@ namespace FDFEditor
             OpenTab("License", new TextEditorTabItem(new StreamReader("Resources/License.txt"), true));
         }
 
+        private void OpenModdingGuide(object sender, RoutedEventArgs e)
+        {
+            OpenTab("Modding Guide", new TextEditorTabItem(new StreamReader("Resources/Modding Guide.txt"), true));
+        }
+
         private void TabItem_PreviewMouseMove(object sender, MouseEventArgs e)
         {
             var tabItem = e.Source as TabItem;

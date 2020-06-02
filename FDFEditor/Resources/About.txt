@@ -1,7 +1,10 @@
 ﻿ABOUT v 1.0
 -----------
 This is a toolbox for modding the Touhou fangame "東方幕華祭 春雪篇 ～ Fantastic Danmaku Festival Part II".
-I currently can't edit files of the first title in the series.
+It currently can't edit files of the first title in the series. 
+
+If you don't know what you're doing, take a look at the modding guide for some pointers and study the game files yourself.
+Sometimes it might be required to take a look at the games code to figure out what something does.
 
 You can contact me via Discord @ Bender#4624. 
 View Help > GitHub for the source or more contact information.
@@ -9,9 +12,18 @@ View Help > GitHub for the source or more contact information.
 Buy the game on Steam here:
 https://store.steampowered.com/app/1031480/___Fantastic_Danmaku_Festival_Part_II/
 
-It was made with the intent of easing the modding of the games Data files found in the Content/Data folder.
-Since they're encrypted and very hard to read from plain text alone, this tool provides some additional view(s)
+This program was made with the intent of easing the modding of the games Data files found in the Content/Data folder.
+Since they're encrypted and sometimes very hard to read from plain text alone, this tool provides some additional view(s)
 like one for editing pattern files.
+
+If you at some point accidentally break your game, delete the edited files that cause issues, go to steam, right click
+the game > Properties > Local Files > Verify Integrity of Game Files. If that doesn't work, backup your save files and replays
+ad reinstall the game.
+
+Some more assumptions this program makes:
+-all files are stored in a valid format that the game can read
+-all .xna files are encrypted to the FDF2 private keys, all other files are in plain text. Check out Tools > Decrypt/Encrypt in other cases
+
 
 THIS TOOL WAS MADE WITH GOOD INTENTIONS. DO NOT USE IT FOR MALICIOUS PURPOSES. I WILL TAKE NO RESPONSIBILITY
 FOR ANY LEGAL ACTIONS BROUGHT AGAINST YOU BECAUSE OF THIS TOOLBOX.
