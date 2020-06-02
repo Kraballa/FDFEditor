@@ -19,15 +19,20 @@ namespace FDFEditor.Control
     /// </summary>
     public partial class TextEditorTabItem : UserControl, ITabItem
     {
-        public TextEditorTabItem(Stream text) : this(new StreamReader(text).ReadToEnd())
+        public TextEditorTabItem(Stream text, bool readOnly = false) : this(new StreamReader(text).ReadToEnd(), readOnly)
         {
 
         }
 
-        public TextEditorTabItem(string text)
+        public TextEditorTabItem(string text, bool readOnly = false)
         {
             InitializeComponent();
             MainTextBox.Text = text;
+            MainTextBox.IsReadOnly = readOnly;
+        }
+
+        public TextEditorTabItem(StreamReader stream, bool readOnly = false) : this(stream.ReadToEnd(), readOnly)
+        {
         }
 
         public string GetPlainText()

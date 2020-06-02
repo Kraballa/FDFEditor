@@ -26,7 +26,6 @@ namespace FDFEditor
         {
             try
             {
-                //decrypt and parse
                 Stream s;
                 if (encrypted)
                 {
@@ -37,11 +36,7 @@ namespace FDFEditor
                     s = new MemoryStream(File.ReadAllBytes(path));
                 }
                 PatternHolder pHolder = PatternHolder.Parse(s);
-                TabItem tab = new TabItem();
-                tab.Header = Path.GetFileName(path);
-                tab.Content = new PatternTabItem(pHolder);
-                MainTabControl.Items.Add(tab);
-                MainTabControl.SelectedIndex = MainTabControl.Items.IndexOf(tab);
+                OpenTab(Path.GetFileName(path), new PatternTabItem(pHolder));
             }
             catch (Exception e)
             {
@@ -54,7 +49,6 @@ namespace FDFEditor
         {
             try
             {
-                //decrypt and parse
                 Stream s;
                 if (encrypted)
                 {
@@ -64,11 +58,7 @@ namespace FDFEditor
                 {
                     s = new MemoryStream(File.ReadAllBytes(path));
                 }
-                TabItem tab = new TabItem();
-                tab.Header = Path.GetFileName(path);
-                tab.Content = new TextEditorTabItem(s);
-                MainTabControl.Items.Add(tab);
-                MainTabControl.SelectedIndex = MainTabControl.Items.IndexOf(tab);
+                OpenTab(Path.GetFileName(path), new TextEditorTabItem(s));
             }
             catch (Exception e)
             {
@@ -94,8 +84,6 @@ namespace FDFEditor
                 }
             }
         }
-
-
 
         private void CloseCommand(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
         {
@@ -206,11 +194,17 @@ namespace FDFEditor
 
         private void OpenScratchpad(object sender, RoutedEventArgs e)
         {
-            TabItem tab = new TabItem();
-            tab.Header = "Scratchpad";
-            tab.Content = new TextEditorTabItem("Scratchpad\n----------\n\n");
-            MainTabControl.Items.Add(tab);
-            MainTabControl.SelectedIndex = MainTabControl.Items.IndexOf(tab);
+            OpenTab("Scratchpad", new TextEditorTabItem("Scratchpad\n----------\n\n"));
+        }
+
+        private void OpenAbout(object sender, RoutedEventArgs e)
+        {
+            OpenTab("About", new TextEditorTabItem(new StreamReader("Resources/About.txt"), true));
+        }
+
+        private void OpenLicense(object sender, RoutedEventArgs e)
+        {
+            OpenTab("License", new TextEditorTabItem(new StreamReader("Resources/License.txt"), true));
         }
 
         private void TabItem_PreviewMouseMove(object sender, MouseEventArgs e)
@@ -243,6 +237,15 @@ namespace FDFEditor
                 tabControl.Items.Remove(tabItemSource);
                 tabControl.Items.Insert(targetIndex, tabItemSource);
             }
+        }
+
+        private void OpenTab(string header, ITabItem content)
+        {
+            TabItem tab = new TabItem();
+            tab.Header = header;
+            tab.Content = content;
+            MainTabControl.Items.Add(tab);
+            MainTabControl.SelectedIndex = MainTabControl.Items.IndexOf(tab);
         }
     }
 }

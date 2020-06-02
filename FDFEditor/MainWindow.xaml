@@ -6,7 +6,7 @@
         xmlns:uc="clr-namespace:FDFEditor.Control"
         xmlns:local="clr-namespace:FDFEditor"
         mc:Ignorable="d"
-        Title="FDF2 Pattern Editor" Height="700" Width="1200">
+        Title="Fantastic Danmaku Festival 2 Modding tool" Height="700" Width="1200">
     <Window.CommandBindings>
         <CommandBinding Command="Open" Executed="OpenCommand"/>
         <CommandBinding Command="Close" Executed="CloseCommand"/>
@@ -40,6 +40,13 @@
                 <MenuItem Header="Encrypt" Click="ToolEncrypt"/>
                 <Separator/>
                 <MenuItem Header="new Scratchpad" Click="OpenScratchpad"/>
+            </MenuItem>
+            <MenuItem Header="Help">
+                <MenuItem Header="About" Click="OpenAbout"/>
+                <MenuItem Header="View GitHub"/>
+                <MenuItem Header="Modding Guide"/>
+                <Separator/>
+                <MenuItem Header="License (GPL3)" Click="OpenLicense"/>
             </MenuItem>
         </Menu>
         <TabControl x:Name="MainTabControl" >

@@ -8,4 +8,10 @@
     <StartupObject />
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Update="Resources\About.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

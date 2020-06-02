@@ -1,0 +1,17 @@
+﻿ABOUT v 1.0
+-----------
+This is a toolbox for modding the Touhou fangame "東方幕華祭 春雪篇 ～ Fantastic Danmaku Festival Part II".
+I currently can't edit files of the first title in the series.
+
+You can contact me via Discord @ Bender#4624. 
+View Help > GitHub for the source or more contact information.
+
+Buy the game on Steam here:
+https://store.steampowered.com/app/1031480/___Fantastic_Danmaku_Festival_Part_II/
+
+It was made with the intent of easing the modding of the games Data files found in the Content/Data folder.
+Since they're encrypted and very hard to read from plain text alone, this tool provides some additional view(s)
+like one for editing pattern files.
+
+THIS TOOL WAS MADE WITH GOOD INTENTIONS. DO NOT USE IT FOR MALICIOUS PURPOSES. I WILL TAKE NO RESPONSIBILITY
+FOR ANY LEGAL ACTIONS BROUGHT AGAINST YOU BECAUSE OF THIS TOOLBOX.
