@@ -20,6 +20,7 @@
         <KeyBinding Key="S" Modifiers="Control" Command="Save"/>
     </Window.InputBindings>
 
+
     <DockPanel>
         <Menu DockPanel.Dock="Top" Width="Auto" Height="20">
             <MenuItem Header="_File">
@@ -42,7 +43,13 @@
             </MenuItem>
         </Menu>
         <TabControl x:Name="MainTabControl" >
-
+            <TabControl.Resources>
+                <Style TargetType="TabItem">
+                    <Setter Property="AllowDrop" Value="True"/>
+                    <EventSetter Event="PreviewMouseMove" Handler="TabItem_PreviewMouseMove"/>
+                    <EventSetter Event="Drop" Handler="TabItem_Drop"/>
+                </Style>
+            </TabControl.Resources>
         </TabControl>
     </DockPanel>
 </Window>

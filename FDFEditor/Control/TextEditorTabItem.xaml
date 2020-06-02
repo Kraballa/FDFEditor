@@ -11,6 +11,5 @@
             <TextBox x:Name="MainTextBox" AcceptsReturn="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" 
                  FontFamily="Consolas" FontSize="18" />
         </Border>
-
     </Grid>
 </UserControl>
