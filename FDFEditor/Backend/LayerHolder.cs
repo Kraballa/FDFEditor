@@ -9,7 +9,7 @@ namespace FDFEditor.Backend
 {
     public class LayerHolder : IHolder
     {
-        public List<ILayerContent> Content;
+        public List<LayerContent> Content;
 
         public string name { get; set; }
         public string begin { get; set; }
@@ -21,7 +21,7 @@ namespace FDFEditor.Backend
 
         private LayerHolder()
         {
-            Content = new List<ILayerContent>();
+            Content = new List<LayerContent>();
         }
 
         public static LayerHolder Parse(ref StreamReader stream)
@@ -45,31 +45,31 @@ namespace FDFEditor.Backend
             int num1 = int.Parse(str1[3]);
             for (int i = 0; i < num1; i++)
             {
-                l.Content.Add(BatchHolder.Parse(stream.ReadLine()));
+                l.Content.Add(LayerContent.Parse(stream.ReadLine()));
             }
 
             num1 = int.Parse(str1[4]);
             for (int i = 0; i < num1; i++)
             {
-                l.Content.Add(BatchHolder.Parse(stream.ReadLine()));
+                l.Content.Add(LayerContent.Parse(stream.ReadLine()));
             }
 
             num1 = int.Parse(str1[5]);
             for (int i = 0; i < num1; i++)
             {
-                l.Content.Add(BatchHolder.Parse(stream.ReadLine()));
+                l.Content.Add(LayerContent.Parse(stream.ReadLine()));
             }
 
             num1 = int.Parse(str1[6]);
             for (int i = 0; i < num1; i++)
             {
-                l.Content.Add(BatchHolder.Parse(stream.ReadLine()));
+                l.Content.Add(LayerContent.Parse(stream.ReadLine()));
             }
 
             num1 = int.Parse(str1[7]);
             for (int i = 0; i < num1; i++)
             {
-                l.Content.Add(BatchHolder.Parse(stream.ReadLine()));
+                l.Content.Add(LayerContent.Parse(stream.ReadLine()));
             }
 
 
@@ -93,7 +93,7 @@ namespace FDFEditor.Backend
             else
             {
                 ret += string.Format("{0},{1},{2},{3},0,0,0,0\n", name, begin, end, Content.Count);
-                foreach (BatchHolder b in Content)
+                foreach (LayerContent b in Content)
                 {
                     ret += b.GetString();
                 }

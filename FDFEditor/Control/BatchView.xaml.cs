@@ -19,7 +19,7 @@ namespace FDFEditor.Control
     /// </summary>
     public partial class BatchView : UserControl, IView
     {
-        private BatchHolder holder;
+        private LayerContent holder;
 
         public string CoverSafe
         {
@@ -50,7 +50,7 @@ namespace FDFEditor.Control
             }
         }
 
-        public BatchView(BatchHolder holder)
+        public BatchView(LayerContent holder)
         {
             InitializeComponent();
             DataContext = holder;

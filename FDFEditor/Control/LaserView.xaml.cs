@@ -19,8 +19,8 @@ namespace FDFEditor.Control
     /// </summary>
     public partial class LaserView : UserControl, IView
     {
-        private LaserHolder holder;
-        public LaserView(LaserHolder holder)
+        private LayerContent holder;
+        public LaserView(LayerContent holder)
         {
             InitializeComponent();
             DataContext = holder;

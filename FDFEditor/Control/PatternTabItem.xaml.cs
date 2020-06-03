@@ -34,16 +34,11 @@ namespace FDFEditor.Control
                 TreeViewItem layerItem = new TreeViewItem();
                 layerItem.Header = "layer " + i;
                 ViewMap.Add(layerItem, pattern.Layers[i]);
-                foreach (ILayerContent b in pattern.Layers[i].Content)
+                foreach (LayerContent b in pattern.Layers[i].Content)
                 {
                     TreeViewItem contentItem = new TreeViewItem();
-                    switch (b)
-                    {
-                        case BatchHolder bh:
-                            contentItem.Header = "batch";
-                            ViewMap.Add(contentItem, (BatchHolder)b);
-                            break;
-                    }
+                    contentItem.Header = "batch"; //switch on view type to discern between batch,laser,cover,rebound and forces
+                    ViewMap.Add(contentItem, b);
                     contentItem.Selected += TabItemSelected;
                     layerItem.Items.Add(contentItem);
                 }
