@@ -60,14 +60,11 @@ just for editing these but that would require more work and a translator. So for
 
 Stage files are essentially their own scripting language. They operate entirely on relative Timestamps:
 [0:00:00]
-[minute:seconds:1/100 seconds]
+[minute:seconds:frame]
 
 From here on [] refers to a timestamp.
 Some more functions:
 //this is a commentary line and ignored by the engine
-[]PlayMusic(<something>) //probably name
-[]LoadBackGround
-[]ShowTitle
 
 For [] To [] Step []
 {
@@ -75,3 +72,65 @@ For [] To [] Step []
 }
 
 Best you just look through the stage scripts yourself and the game's code to see how it all works.
+Commands (as found in StageManager.cs):
+
+Pause(int)
+Pause for a certain amount of time.
+int: number of frames to pause
+
+Goto(int,int,int)
+Sets the current stage timer to the specified values, essentially skipping.
+int,int,int: minutes,seconds,frames
+
+PlayMusic(string)
+Starts playing music.
+string: one of [road,boss,last] for stages, bosses, tlb's respectively. their actual id's are unrelated.
+
+FadeoutMusic(float)
+Fades out the music over a certain amount of time.
+float: time in seconds (can be negative for fading in or getting louder than max volume)
+
+Caution(float,float)
+Displays "Caution" at a specified position.
+float,float:x,y position
+
+SetEnemyBarrageUnderActor()
+Sets the current enemies barrage to be under the actor (or something)
+
+RaiseEffect(string,float,float,int)
+
+SetEnemyParent(string,string)
+
+SetEnemyItems(float,float,float,float,float,float)
+
+SetEnemy() //this one's more complex
+
+CopyEnemy() //also more complex
+
+Saveid(string)
+
+Loadid(string)
+
+AddEvent(int,string,int,int) parameters can also be something else or something, idk
+
+SetNoHarmTime(int)
+
+ChangeEnemy(string,string,float,int,int)
+
+SetBossCard(int,int,int,int, string (optional))
+
+SetBossItems(9x int)
+sets the amount of items the boss drops upon completing a card
+9x int: bigBlue,blue,bigRed,red,full,life,life piece,bomb,bomb piece
+note, bosses only drop bombs,lives and fulls in easy, extra or phantasm. hardcoded logic 
+
+SetBoss(int string,int,int,int,int,optional string)
+
+StageEnd(string)
+Ends the stage and follows it up with another one or ends the game.
+string: "2" -> goto stage 2. "ed" -> end 6 stage run, "exed" -> end extra, "phed" -> end phantasm, "sc" -> spellcard practice or something
+
+Other commands:
+LastBoss   //no braces
+LoadBackGround
+ShowTitle
