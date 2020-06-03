@@ -17,6 +17,12 @@ Written in .net core using WPF. GPL-3 license.
 ## Installation Linux
 .Net Core runs natively on linux but the WPF framework doesn't. It might still be possible to run the program through Wine. Simply follow the steps in the Windows installation but run the .NET Core Desktop Runtime Installer through Wine and launch the program the same way.
 
+## Building from source
+1. Install Visual Studio Community 2019, or any other version of the 2019 line.
+2. Install the WPF and .NET Core SDK's from the Visual Studio Installer
+3. Clone the project and build.
+It should be plug and play since I haven't used any additional libraries or frameworks.
+
 ## Info
 Please make sure to read the About page found under the Help menu after first opening the app. For some general guidelines and tips consult the Modding Guide, also found under the Help menu.
 
