@@ -104,7 +104,7 @@ namespace FDFEditor
             for (var enumerator = command.GetEnumerator(); enumerator.MoveNext();)
             {
                 KeyGesture gesture = enumerator.Current as KeyGesture;
-                if (gesture.DisplayString.Equals("Esc")) //not exit when pressing escape. this is a hack
+                if (gesture.DisplayString.Equals("Esc")) //not exit when pressing escape. this is a hack. Fix by implementing a custom command since pressing escape seems to trigger this automatically.
                     return;
             }
 
@@ -156,8 +156,9 @@ namespace FDFEditor
                 string from = openDialog.FileName;
 
                 SaveFileDialog saveDialog = new SaveFileDialog();
-                saveDialog.Title = "Save Encrypted As";
+                saveDialog.Title = "Save " + Path.GetFileName(from) + " Encrypted As";
                 saveDialog.Filter = "Xna Files (*.xna)|*.xna";
+                saveDialog.FileName = Path.GetFileNameWithoutExtension(from);
                 if (saveDialog.ShowDialog() == true)
                 {
                     string to = saveDialog.FileName;
@@ -177,7 +178,8 @@ namespace FDFEditor
 
                 SaveFileDialog saveDialog = new SaveFileDialog();
                 saveDialog.Filter = "Txt Files (*.txt)|*.txt|Any File (*.*)|*.*";
-                saveDialog.Title = "Save Decrypted As";
+                saveDialog.Title = "Save " + Path.GetFileName(from) + " Decrypted As";
+                saveDialog.FileName = Path.GetFileNameWithoutExtension(from);
                 if (saveDialog.ShowDialog() == true)
                 {
                     string to = saveDialog.FileName;
