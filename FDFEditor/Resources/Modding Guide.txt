@@ -134,3 +134,64 @@ Other commands:
 LastBoss   //no braces
 LoadBackGround
 ShowTitle
+
+
+Batch Definition parameter explanations:
+ID: index of the batch definition
+parentID:
+binding: unused variable
+bindID: ID of bound object, i.e. other bullets. -1 for no binding. Being bound means no changes to the bullets position, speed, or any other changing variable but instead follow a batch
+bindWithSpeed: Not sure, something like bullet's fdirection gets offset by the batches fdirection?
+begin:
+life:
+fx:
+fy:
+
+r:
+rdirection:
+rdirections:
+tiao:
+t:
+fdirection:
+fdirections:
+range:
+
+speed:
+speedd:
+speedds:
+aspeed:
+aspeedd:
+aspeedds:
+
+sonlife:
+type:
+wscale:
+hscale:
+colorR:
+colorG:
+colorB:
+alpha:
+head:
+heads:
+withspeedd:
+
+sonspeed:
+sonspeedd:
+sonspeedds:
+sonaspeed:
+sonaspeedd:
+sonaspeedds:
+
+xscale:
+yscale:
+
+Mist:
+Dispel:
+Blend:
+Afterimage:
+Outdispel:
+Invincible:
+ParentEvents:
+SonEvents:
+rand.fx:
+
