@@ -100,6 +100,14 @@ namespace FDFEditor
 
         private void ExitCommand(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
         {
+            InputGestureCollection command = ((RoutedCommand)e.Command).InputGestures;
+            for (var enumerator = command.GetEnumerator(); enumerator.MoveNext();)
+            {
+                KeyGesture gesture = enumerator.Current as KeyGesture;
+                if (gesture.DisplayString.Equals("Esc")) //not exit when pressing escape. this is a hack
+                    return;
+            }
+
             System.Windows.Application.Current.Shutdown();
         }
 
