@@ -24,8 +24,8 @@
             <MenuItem Header="_File">
                 <MenuItem Header="_New" />
                 <MenuItem Header="_Save" Command="Save" InputGestureText="Ctrl+S"/>
-                <MenuItem Header="_Open Pattern" Command="Open"/>
-                <MenuItem Header="Open As Text" Click="OpenAsText"/>
+                <MenuItem Header="Open in Pattern View" Click="OpenAsPattern"/>
+                <MenuItem Header="_Open in Text View" Command="Open"/>
                 <Separator/>
                 <MenuItem Header="_Close" Command="Close"/>
                 <Separator/>

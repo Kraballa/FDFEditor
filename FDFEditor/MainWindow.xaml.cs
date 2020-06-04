@@ -62,7 +62,7 @@ namespace FDFEditor
             }
             catch (Exception e)
             {
-                string text = "Error reading file. It was already decrypted.\n" + e;
+                string text = "Error reading file. It probably was already decrypted.\n" + e;
                 MessageBox.Show(text, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
@@ -72,14 +72,21 @@ namespace FDFEditor
             OpenFileDialog dialog = new OpenFileDialog();
             if (pathToData != null)
                 dialog.InitialDirectory = pathToData;
-            dialog.Filter = "Pattern Files (b*.xna)|b*.xna";
+            dialog.Filter = "Encrypted Files (*.xna)|*.xna|Plain Text Files (*.txt)|*.txt";
             dialog.Multiselect = true;
-            dialog.FileName = "b174.xna";
             if (dialog.ShowDialog() == true)
             {
                 foreach (string path in dialog.FileNames)
                 {
-                    OpenAsPattern(path);
+                    if (Path.GetExtension(path).Contains("xna"))
+                    {
+                        OpenAsText(path);
+                    }
+                    else
+                    {
+                        OpenAsText(path, false);
+                    }
+
                     pathToData = Path.GetFullPath(path);
                 }
             }
@@ -196,27 +203,18 @@ namespace FDFEditor
             }
         }
 
-        private void OpenAsText(object sender, RoutedEventArgs e)
+        private void OpenAsPattern(object sender, RoutedEventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
             if (pathToData != null)
                 dialog.InitialDirectory = pathToData;
-            dialog.Filter = "Encrypted Files (*.xna)|*.xna|Plain Text Files (*.txt)|*.txt";
+            dialog.Filter = "Pattern Files (b*.xna)|b*.xna";
             dialog.Multiselect = true;
-            dialog.FileName = "s1.xna";
             if (dialog.ShowDialog() == true)
             {
                 foreach (string path in dialog.FileNames)
                 {
-                    if (Path.GetExtension(path).Contains("xna"))
-                    {
-                        OpenAsText(path);
-                    }
-                    else
-                    {
-                        OpenAsText(path, false);
-                    }
-
+                    OpenAsPattern(path);
                     pathToData = Path.GetFullPath(path);
                 }
             }
