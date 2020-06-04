@@ -38,20 +38,6 @@ namespace FDFEditor.Control
         public static readonly DependencyProperty TextProperty =
             DependencyProperty.Register("Text", typeof(string), typeof(TitledTextBox), new PropertyMetadata(""));
 
-
-
-        public string Tooltip
-        {
-            get { return (string)GetValue(TooltipProperty); }
-            set { SetValue(TooltipProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for Tooltip.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty TooltipProperty =
-            DependencyProperty.Register("Tooltip", typeof(string), typeof(TitledTextBox), new PropertyMetadata(""));
-
-
-
         public TitledTextBox()
         {
             InitializeComponent();
