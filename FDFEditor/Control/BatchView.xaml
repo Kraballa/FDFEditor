@@ -19,7 +19,7 @@
         <WrapPanel Orientation="Horizontal" Style="{StaticResource spStyle}">
             <uc:TitledTextBox Title="ID" Text="{Binding Path=fields[0]}"/>
             <uc:TitledTextBox Title="parentId" Text="{Binding Path=fields[1]}"/>
-            <uc:TitledTextBox Title="bound?" Text="{Binding Path=fields[2]}"/>
+            <uc:TitledTextBox Title="binding" Text="{Binding Path=fields[2]}"/>
             <uc:TitledTextBox Title="bindId" Text="{Binding Path=fields[3]}"/>
             <uc:TitledTextBox Title="bindWithSpeedd" Text="{Binding Path=fields[4]}"/>
             <uc:TitledTextBox Title="begin" Text="{Binding Path=fields[8]}"/>

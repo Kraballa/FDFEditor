@@ -6,7 +6,7 @@
         xmlns:uc="clr-namespace:FDFEditor.Control"
         xmlns:local="clr-namespace:FDFEditor"
         mc:Ignorable="d"
-        Title="Fantastic Danmaku Festival Modding tool" Height="700" Width="1200">
+        Title="Fantastic Danmaku Editor" Height="700" Width="1200">
     <Window.CommandBindings>
         <CommandBinding Command="Open" Executed="OpenCommand"/>
         <CommandBinding Command="Close" Executed="CloseCommand"/>
@@ -18,7 +18,6 @@
         <KeyBinding Key="X" Modifiers="Control" Command="Stop"/>
         <KeyBinding Key="S" Modifiers="Control" Command="Save"/>
     </Window.InputBindings>
-
 
     <DockPanel>
         <Menu DockPanel.Dock="Top" Width="Auto" Height="20" >
@@ -32,15 +31,15 @@
                 <Separator/>
                 <MenuItem Header="E_xit" Command="Stop" InputGestureText="Ctrl+X"/>
             </MenuItem>
-            <MenuItem Header="Game">
-                <MenuItem Header="FDF1" IsCheckable="True" x:Name="FDF1Checkbox" Click="FDFCheckbox_Click"/>
-                <MenuItem Header="FDF2" IsCheckable="True" x:Name="FDF2Checkbox" Click="FDFCheckbox_Click" IsChecked="True"/>
+            <MenuItem Header="Keys">
+                <MenuItem Header="FDF1 v1.3 and below" IsCheckable="True" x:Name="FDF1Checkbox" Click="FDFCheckbox_Click"/>
+                <MenuItem Header="FDF1/2 Steam" IsCheckable="True" x:Name="FDF2Checkbox" Click="FDFCheckbox_Click" IsChecked="True"/>
             </MenuItem>
             <MenuItem Header="Tools">
                 <MenuItem Header="Decrypt" Click="ToolDecrypt"/>
                 <MenuItem Header="Encrypt" Click="ToolEncrypt"/>
                 <Separator/>
-                <MenuItem Header="new Scratchpad" Click="OpenScratchpad"/>
+                <MenuItem Header="New Scratchpad" Click="OpenScratchpad"/>
             </MenuItem>
             <MenuItem Header="Help">
                 <MenuItem Header="About" Click="OpenAbout"/>
