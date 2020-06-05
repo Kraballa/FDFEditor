@@ -38,6 +38,20 @@ namespace FDFEditor.Control
         public static readonly DependencyProperty TextProperty =
             DependencyProperty.Register("Text", typeof(string), typeof(TitledTextBox), new PropertyMetadata(""));
 
+
+
+        public bool Readonly
+        {
+            get { return (bool)GetValue(ReadonlyProperty); }
+            set { SetValue(ReadonlyProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Readonly.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ReadonlyProperty =
+            DependencyProperty.Register("Readonly", typeof(bool), typeof(TitledTextBox), new PropertyMetadata(false));
+
+
+
         public TitledTextBox()
         {
             InitializeComponent();

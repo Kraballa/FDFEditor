@@ -21,35 +21,6 @@ namespace FDFEditor.Control
     {
         private LayerContent holder;
 
-        public string CoverSafe
-        {
-            get
-            {
-                return holder.fields.Length >= 73 ? holder.fields[70] : "";
-            }
-        }
-        public string ReboundDafe
-        {
-            get
-            {
-                return holder.fields.Length >= 73 ? holder.fields[71] : "";
-            }
-        }
-        public string ForceSave
-        {
-            get
-            {
-                return holder.fields.Length >= 73 ? holder.fields[72] : "";
-            }
-        }
-        public string DeepbindSave
-        {
-            get
-            {
-                return holder.fields.Length >= 74 ? holder.fields[73] : "";
-            }
-        }
-
         public BatchView(LayerContent holder)
         {
             InitializeComponent();

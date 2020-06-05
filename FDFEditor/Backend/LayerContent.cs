@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Input;
 
 namespace FDFEditor.Backend
 {
@@ -30,11 +31,18 @@ namespace FDFEditor.Backend
             LayerContent b = new LayerContent();
             string[] str = batch.Split(',');
 
-            b.fields = new string[str.Length];
-            for (int i = 0; i < str.Length; i++)
+            b.fields = new string[74];
+            int i;
+            for (i = 0; i < str.Length; i++)
             {
                 b.fields[i] = str[i];
             }
+            for (; i < str.Length; i++)
+            {
+                b.fields[i] = "False";
+            }
+
+
             b.Type = type;
             switch (b.Type)
             {
@@ -52,7 +60,7 @@ namespace FDFEditor.Backend
 
         public string GetString()
         {
-            return string.Join(',', fields) + "\n";
+            return string.Join(',', fields);
         }
 
         public IView GetView()

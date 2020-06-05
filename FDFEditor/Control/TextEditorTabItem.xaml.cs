@@ -19,10 +19,7 @@ namespace FDFEditor.Control
     /// </summary>
     public partial class TextEditorTabItem : UserControl, ITabItem
     {
-        public TextEditorTabItem(Stream text, bool readOnly = false) : this(new StreamReader(text).ReadToEnd(), readOnly)
-        {
-
-        }
+        public TextEditorTabItem(Stream text, bool readOnly = false) : this(new StreamReader(text).ReadToEnd(), readOnly) { }
 
         public TextEditorTabItem(string text, bool readOnly = false)
         {
@@ -31,9 +28,7 @@ namespace FDFEditor.Control
             MainTextBox.IsReadOnly = readOnly;
         }
 
-        public TextEditorTabItem(StreamReader stream, bool readOnly = false) : this(stream.ReadToEnd(), readOnly)
-        {
-        }
+        public TextEditorTabItem(StreamReader stream, bool readOnly = false) : this(stream.ReadToEnd(), readOnly) { }
 
         public string GetPlainText()
         {

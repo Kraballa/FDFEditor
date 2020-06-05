@@ -106,10 +106,10 @@
             <uc:TitledTextBox Title="rand.sonaspeedd" Text="{Binding Path=fields[69]}"/>
         </WrapPanel>
         <WrapPanel Orientation="Horizontal" Style="{StaticResource spStyle}">
-            <uc:TitledTextBox Title="Cover" Text="{Binding Path=CoverSafe}"/>
-            <uc:TitledTextBox Title="Rebound" Text="{Binding Path=ReboundDafe}"/>
-            <uc:TitledTextBox Title="Force" Text="{Binding Path=ForceSave}"/>
-            <uc:TitledTextBox Title="Deepbind" Text="{Binding Path=DeepbindSave}"/>
+            <uc:TitledTextBox Title="Cover" Text="{Binding Path=fields[70]}"/>
+            <uc:TitledTextBox Title="Rebound" Text="{Binding Path=fields[71]}"/>
+            <uc:TitledTextBox Title="Force" Text="{Binding Path=fields[72]}"/>
+            <uc:TitledTextBox Title="Deepbind" Text="{Binding Path=fields[73]}"/>
         </WrapPanel>
     </StackPanel>
 </UserControl>

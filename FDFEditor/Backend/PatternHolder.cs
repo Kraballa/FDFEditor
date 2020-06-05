@@ -17,7 +17,13 @@ namespace FDFEditor.Backend
         public string Sounds { get; set; }
         public string Center { get; set; }
 
-        private PatternHolder() { }
+        private PatternHolder()
+        {
+            Types = "";
+            GlobalEvents = "";
+            Sounds = "";
+            Center = "";
+        }
 
         public static PatternHolder Parse(Stream script)
         {
@@ -31,7 +37,9 @@ namespace FDFEditor.Backend
             {
                 for (int i = 0; i < int.Parse(str1.Split(' ')[0]); i++)
                 {
-                    p.Types += stream.ReadLine() + "\n"; //bullet type definitions
+                    if (i > 0)
+                        p.Types += "\n";
+                    p.Types += stream.ReadLine(); //bullet type definitions
                 }
                 str1 = stream.ReadLine();
             }
@@ -39,7 +47,9 @@ namespace FDFEditor.Backend
             {
                 for (int i = 0; i < int.Parse(str1.Split(' ')[0]); i++)
                 {
-                    p.GlobalEvents += stream.ReadLine() + "\n"; //global event definitions
+                    if (i > 0)
+                        p.Types += "\n";
+                    p.GlobalEvents += stream.ReadLine(); //global event definitions
                 }
                 str1 = stream.ReadLine();
             }
@@ -47,7 +57,9 @@ namespace FDFEditor.Backend
             {
                 for (int i = 0; i < int.Parse(str1.Split(' ')[0]); i++)
                 {
-                    p.Sounds += stream.ReadLine() + "\n"; //sound definitions
+                    if (i > 0)
+                        p.Types += "\n";
+                    p.Sounds += stream.ReadLine(); //sound definitions
                 }
                 str1 = stream.ReadLine();
             }
@@ -67,34 +79,34 @@ namespace FDFEditor.Backend
 
         public string GetString()
         {
-            string ret = "Crazy Storm Data 1.01\n";
+            StringBuilder ret = new StringBuilder("Crazy Storm Data 1.01\n");
             if (Types.Trim() != "")
             {
-                ret += Types.Split('\n').Length + " Types:\n";
-                ret += Types + "\n";
+                ret.Append(Types.Split('\n').Length + " Types:\n");
+                ret.Append(Types + "\n");
             }
             if (GlobalEvents.Trim() != "")
             {
-                ret += GlobalEvents.Split('\n').Length + " GlobalEvents:\n";
-                ret += GlobalEvents + "\n";
+                ret.Append(GlobalEvents.Split('\n').Length + " GlobalEvents:\n");
+                ret.Append(GlobalEvents + "\n");
             }
             if (Sounds.Trim() != "")
             {
-                ret += Sounds.Split('\n').Length + " Sounds:\n";
-                ret += Sounds + "\n";
+                ret.Append(Sounds.Split('\n').Length + " Sounds:\n");
+                ret.Append(Sounds + "\n");
             }
             if (Center.Trim() != "")
             {
-                ret += "Center:";
-                ret += Center + "\n";
+                ret.Append("Center:");
+                ret.Append(Center + "\n");
             }
-            ret += "TotalFrame:" + TotalFrames;
+            ret.Append("Totalframe:" + TotalFrames + "\n");
             for (int i = 0; i < Layers.Length; i++)
             {
-                ret += Layers[i].GetString() + "\n";
+                ret.Append(Layers[i].GetString() + "\n");
             }
 
-            return ret;
+            return ret.ToString();
         }
 
         public IView GetView()
