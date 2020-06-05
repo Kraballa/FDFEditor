@@ -122,6 +122,7 @@ namespace FDFEditor
             {
                 ITabItem current = (ITabItem)MainTabControl.SelectedContent;
                 string text = current.GetPlainText();
+                Console.WriteLine(text);
                 SaveFileDialog saveDialog = new SaveFileDialog();
                 saveDialog.Filter = "Xna File (*.xna)|*.xna|Text File (*.txt)|*.txt";
                 saveDialog.Title = "Save As";

@@ -18,83 +18,83 @@
     </UserControl.Resources>
     <StackPanel>
         <WrapPanel Orientation="Horizontal" Style="{StaticResource spStyle}">
-            <uc:TitledTextBox Title="ID" Text="{Binding Path=fields[0]}"/>
-            <uc:TitledTextBox Title="parentId" Text="{Binding Path=fields[1]}"/>
-            <uc:TitledTextBox Title="binding" Text="{Binding Path=fields[2]}"/>
-            <uc:TitledTextBox Title="bindId" Text="{Binding Path=fields[3]}"/>
-            <uc:TitledTextBox Title="bindWithSpeedd" Text="{Binding Path=fields[4]}"/>
-            <uc:TitledTextBox Title="x" Text="{Binding Path=fields[6]}"/>
-            <uc:TitledTextBox Title="y" Text="{Binding Path=fields[7]}"/>
-            <uc:TitledTextBox Title="begin" Text="{Binding Path=fields[8]}"/>
-            <uc:TitledTextBox Title="life" Text="{Binding Path=fields[9]}"/>
-            <uc:TitledTextBox Title="r" Text="{Binding Path=fields[10]}"/>
-            <uc:TitledTextBox Title="rdirection" Text="{Binding Path=fields[11]}"/>
+            <uc:TitledTextBox Title="ID" Text="{Binding Path=fields[0], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="parentId" Text="{Binding Path=fields[1], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="binding" Text="{Binding Path=fields[2], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="bindId" Text="{Binding Path=fields[3], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="bindWithSpeedd" Text="{Binding Path=fields[4], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="x" Text="{Binding Path=fields[6], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="y" Text="{Binding Path=fields[7], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="begin" Text="{Binding Path=fields[8], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="life" Text="{Binding Path=fields[9], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="r" Text="{Binding Path=fields[10], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="rdirection" Text="{Binding Path=fields[11], Mode=TwoWay}"/>
         </WrapPanel>
         <WrapPanel Orientation="Horizontal" Style="{StaticResource spStyle}">
-            <uc:TitledTextBox Title="rdirections" Text="{Binding Path=fields[12]}"/>
-            <uc:TitledTextBox Title="tiao" Text="{Binding Path=fields[13]}"/>
-            <uc:TitledTextBox Title="t" Text="{Binding Path=fields[14]}"/>
-            <uc:TitledTextBox Title="fdirection" Text="{Binding Path=fields[15]}"/>
-            <uc:TitledTextBox Title="fdirections" Text="{Binding Path=fields[16]}"/>
-            <uc:TitledTextBox Title="range" Text="{Binding Path=fields[17]}"/>
+            <uc:TitledTextBox Title="rdirections" Text="{Binding Path=fields[12], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="tiao" Text="{Binding Path=fields[13], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="t" Text="{Binding Path=fields[14], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="fdirection" Text="{Binding Path=fields[15], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="fdirections" Text="{Binding Path=fields[16], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="range" Text="{Binding Path=fields[17], Mode=TwoWay}"/>
         </WrapPanel>
         <WrapPanel Orientation="Horizontal" Style="{StaticResource spStyle}">
-            <uc:TitledTextBox Title="speed" Text="{Binding Path=fields[18]}"/>
-            <uc:TitledTextBox Title="speedd" Text="{Binding Path=fields[19]}"/>
-            <uc:TitledTextBox Title="speedds" Text="{Binding Path=fields[20]}"/>
-            <uc:TitledTextBox Title="aspeed" Text="{Binding Path=fields[21]}"/>
-            <uc:TitledTextBox Title="aspeedd" Text="{Binding Path=fields[22]}"/>
-            <uc:TitledTextBox Title="aspeedds" Text="{Binding Path=fields[23]}"/>
+            <uc:TitledTextBox Title="speed" Text="{Binding Path=fields[18], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="speedd" Text="{Binding Path=fields[19], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="speedds" Text="{Binding Path=fields[20], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="aspeed" Text="{Binding Path=fields[21], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="aspeedd" Text="{Binding Path=fields[22], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="aspeedds" Text="{Binding Path=fields[23], Mode=TwoWay}"/>
         </WrapPanel>
         <WrapPanel Orientation="Horizontal" Style="{StaticResource spStyle}">
-            <uc:TitledTextBox Title="sonlife" Text="{Binding Path=fields[24]}"/>
-            <uc:TitledTextBox Title="type" Text="{Binding Path=fields[25]}"/>
-            <uc:TitledTextBox Title="wscale" Text="{Binding Path=fields[26]}"/>
-            <uc:TitledTextBox Title="longs" Text="{Binding Path=fields[27]}"/>
-            <uc:TitledTextBox Title="alpha" Text="{Binding Path=fields[28]}"/>
-            <uc:TitledTextBox Title="Ray" Text="{Binding Path=fields[29]}"/>
+            <uc:TitledTextBox Title="sonlife" Text="{Binding Path=fields[24], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="type" Text="{Binding Path=fields[25], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="wscale" Text="{Binding Path=fields[26], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="longs" Text="{Binding Path=fields[27], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="alpha" Text="{Binding Path=fields[28], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="Ray" Text="{Binding Path=fields[29], Mode=TwoWay}"/>
         </WrapPanel>
         <WrapPanel Orientation="Horizontal" Style="{StaticResource spStyle}">
-            <uc:TitledTextBox Title="sonspeed" Text="{Binding Path=fields[30]}"/>
-            <uc:TitledTextBox Title="sonspeedd" Text="{Binding Path=fields[31]}"/>
-            <uc:TitledTextBox Title="sonspeedds" Text="{Binding Path=fields[32]}"/>
-            <uc:TitledTextBox Title="sonaspeed" Text="{Binding Path=fields[33]}"/>
-            <uc:TitledTextBox Title="sonaspeedd" Text="{Binding Path=fields[34]}"/>
-            <uc:TitledTextBox Title="sonaspeedds" Text="{Binding Path=fields[35]}"/>
+            <uc:TitledTextBox Title="sonspeed" Text="{Binding Path=fields[30], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="sonspeedd" Text="{Binding Path=fields[31], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="sonspeedds" Text="{Binding Path=fields[32], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="sonaspeed" Text="{Binding Path=fields[33], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="sonaspeedd" Text="{Binding Path=fields[34], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="sonaspeedds" Text="{Binding Path=fields[35], Mode=TwoWay}"/>
         </WrapPanel>
         <WrapPanel Orientation="Horizontal" Style="{StaticResource spStyle}">
-            <uc:TitledTextBox Title="xscale" Text="{Binding Path=fields[36]}"/>
-            <uc:TitledTextBox Title="yscale" Text="{Binding Path=fields[37]}"/>
-            <uc:TitledTextBox Title="Blend" Text="{Binding Path=fields[38]}"/>
-            <uc:TitledTextBox Title="Outdispel" Text="{Binding Path=fields[39]}"/>
-            <uc:TitledTextBox Title="Invincible" Text="{Binding Path=fields[40]}"/>
+            <uc:TitledTextBox Title="xscale" Text="{Binding Path=fields[36], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="yscale" Text="{Binding Path=fields[37], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="Blend" Text="{Binding Path=fields[38], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="Outdispel" Text="{Binding Path=fields[39], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="Invincible" Text="{Binding Path=fields[40], Mode=TwoWay}"/>
         </WrapPanel>
         <WrapPanel Orientation="Horizontal" Style="{StaticResource spStyle}">
-            <uc:TitledTextBox Title="ParentEvents" Text="{Binding Path=fields[42]}"/>
+            <uc:TitledTextBox Title="ParentEvents" Text="{Binding Path=fields[42], Mode=TwoWay}"/>
         </WrapPanel>
         <WrapPanel Orientation="Horizontal" Style="{StaticResource spStyle}">
-            <uc:TitledTextBox Title="SonEvents" Text="{Binding Path=fields[43]}"/>
+            <uc:TitledTextBox Title="SonEvents" Text="{Binding Path=fields[43], Mode=TwoWay}"/>
         </WrapPanel>
         <WrapPanel Orientation="Horizontal" Style="{StaticResource spStyle}">
-            <uc:TitledTextBox Title="rand.r" Text="{Binding Path=fields[44]}"/>
-            <uc:TitledTextBox Title="rand.rdirection" Text="{Binding Path=fields[45]}"/>
-            <uc:TitledTextBox Title="rand.tiao" Text="{Binding Path=fields[46]}"/>
-            <uc:TitledTextBox Title="rand.t" Text="{Binding Path=fields[47]}"/>
-            <uc:TitledTextBox Title="rand.fdirection" Text="{Binding Path=fields[48]}"/>
-            <uc:TitledTextBox Title="rand.range" Text="{Binding Path=fields[49]}"/>
+            <uc:TitledTextBox Title="rand.r" Text="{Binding Path=fields[44], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="rand.rdirection" Text="{Binding Path=fields[45], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="rand.tiao" Text="{Binding Path=fields[46], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="rand.t" Text="{Binding Path=fields[47], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="rand.fdirection" Text="{Binding Path=fields[48], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="rand.range" Text="{Binding Path=fields[49], Mode=TwoWay}"/>
         </WrapPanel>
         <WrapPanel Orientation="Horizontal" Style="{StaticResource spStyle}">
-            <uc:TitledTextBox Title="rand.speed" Text="{Binding Path=fields[50]}"/>
-            <uc:TitledTextBox Title="rand.speedd" Text="{Binding Path=fields[51]}"/>
-            <uc:TitledTextBox Title="rand.aspeed" Text="{Binding Path=fields[52]}"/>
-            <uc:TitledTextBox Title="rand.aspeedd" Text="{Binding Path=fields[53]}"/>
-            <uc:TitledTextBox Title="rand.sonspeed" Text="{Binding Path=fields[54]}"/>
-            <uc:TitledTextBox Title="rand.sonspeedd" Text="{Binding Path=fields[55]}"/>
-            <uc:TitledTextBox Title="rand.sonaspeed" Text="{Binding Path=fields[56]}"/>
-            <uc:TitledTextBox Title="rand.sonaspeedd" Text="{Binding Path=fields[57]}"/>
+            <uc:TitledTextBox Title="rand.speed" Text="{Binding Path=fields[50], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="rand.speedd" Text="{Binding Path=fields[51], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="rand.aspeed" Text="{Binding Path=fields[52], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="rand.aspeedd" Text="{Binding Path=fields[53], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="rand.sonspeed" Text="{Binding Path=fields[54], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="rand.sonspeedd" Text="{Binding Path=fields[55], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="rand.sonaspeed" Text="{Binding Path=fields[56], Mode=TwoWay}"/>
+            <uc:TitledTextBox Title="rand.sonaspeedd" Text="{Binding Path=fields[57], Mode=TwoWay}"/>
         </WrapPanel>
         <WrapPanel Orientation="Horizontal" Style="{StaticResource spStyle}">
-            <uc:TitledTextBox Title="Rebound" Text="{Binding Path=ReboundSafe}"/>
+            <uc:TitledTextBox Title="Rebound" Text="{Binding Path=ReboundSafe, Mode=TwoWay}"/>
         </WrapPanel>
     </StackPanel>
 </UserControl>

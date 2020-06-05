@@ -27,6 +27,17 @@ d212.xna    |  dialogue files   | d<xyz>.xna, x = stage (1-6 + extra + phantasm)
 e21.xna     |  no idea          | probably some CrazyStorm data again
 s2.xna      |  spell list       | s<x>.xna, x = difficulty (1-4 as easy - lunatic + extra + phantasm), used exclusively for spell practice
 
+List of all files that contain strings used ingame (thanks Mots Doux!):
+filename   |  content
+-----------+----------------------
+6.xna      |  comments for the tracks in the music room
+7.xna      |  challenge spellcard names
+9(e).xna   |  9.xna for FDF1 and 9e.xna for FDF2. Achievement text.
+d<xyz>.xna |  dialogue files, see previous table
+s<x>.xna   |  list of spell names
+
+List of savedata files:
+4.xna, 5.xna, 8.xna
 
 [3] Pattern File Format
 

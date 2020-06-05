@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel>
-        <local:TitledTextBox Title="Types" Text="{Binding Path=Types}"/>
+        <local:TitledTextBox Title="Types" Text="{Binding Path=Types, Mode=TwoWay}"/>
         <local:TitledTextBox Title="GlobalEvents" Text="{Binding Path=GlobalEvents}"/>
         <local:TitledTextBox Title="Sounds" Text="{Binding Path=Sounds}"/>
         <local:TitledTextBox Title="Center" Text="{Binding Path=Center}"/>
