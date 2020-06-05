@@ -92,7 +92,7 @@ namespace FDFEditor.Backend
             }
             else
             {
-                ret += string.Format("{0},{1},{2},{3},0,0,0,0\n", name, begin, end, Content.Count);
+                ret += string.Format("{0},{1},{2},{3},{4},{5},{6},{7}\n", name, begin, end, numThings[0], numThings[1], numThings[2], numThings[3], numThings[4]);
                 foreach (LayerContent b in Content)
                 {
                     ret += b.GetString();

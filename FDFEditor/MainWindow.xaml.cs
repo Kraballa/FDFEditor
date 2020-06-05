@@ -15,8 +15,6 @@ namespace FDFEditor
     /// </summary>
     public partial class MainWindow : Window
     {
-        private string pathToData;
-
         public MainWindow()
         {
             InitializeComponent();
@@ -70,8 +68,6 @@ namespace FDFEditor
         private void OpenCommand(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
-            if (pathToData != null)
-                dialog.InitialDirectory = pathToData;
             dialog.Filter = "Encrypted Files (*.xna)|*.xna|Plain Text Files (*.txt)|*.txt";
             dialog.Multiselect = true;
             if (dialog.ShowDialog() == true)
@@ -86,8 +82,6 @@ namespace FDFEditor
                     {
                         OpenAsText(path, false);
                     }
-
-                    pathToData = Path.GetFullPath(path);
                 }
             }
         }
@@ -206,8 +200,6 @@ namespace FDFEditor
         private void OpenAsPattern(object sender, RoutedEventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
-            if (pathToData != null)
-                dialog.InitialDirectory = pathToData;
             dialog.Filter = "Pattern Files (b*.xna)|b*.xna";
             dialog.Multiselect = true;
             if (dialog.ShowDialog() == true)
@@ -215,7 +207,6 @@ namespace FDFEditor
                 foreach (string path in dialog.FileNames)
                 {
                     OpenAsPattern(path);
-                    pathToData = Path.GetFullPath(path);
                 }
             }
         }

@@ -71,19 +71,19 @@ namespace FDFEditor.Backend
         public string GetString()
         {
             string ret = "Crazy Storm Data 1.01\n";
-            if (Types != "")
+            if (Types.Trim() != "")
             {
                 ret += Types + "\n";
             }
-            if (GlobalEvents != "")
+            if (GlobalEvents.Trim() != "")
             {
                 ret += GlobalEvents + "\n";
             }
-            if (Sounds != "")
+            if (Sounds.Trim() != "")
             {
                 ret += Sounds + "\n";
             }
-            if (Center != "")
+            if (Center.Trim() != "")
             {
                 ret += Center + "\n";
             }

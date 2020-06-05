@@ -1,7 +1,7 @@
-﻿ABOUT v 1.0
+﻿ABOUT v 1.1
 -----------
 This is a toolbox for modding the Touhou fangame "東方幕華祭 春雪篇 ～ Fantastic Danmaku Festival Part II".
-It currently can't edit files of the first title in the series. 
+It can edit most files from the first game aswell.
 
 Repository at "https://github.com/Kraballa/FDFEditor"
 
@@ -20,11 +20,11 @@ like one for editing pattern files.
 
 If you at some point accidentally break your game, delete the edited files that cause issues, go to steam, right click
 the game > Properties > Local Files > Verify Integrity of Game Files. If that doesn't work, backup your save files and replays
-ad reinstall the game.
+and reinstall the game.
 
 Some more assumptions this program makes:
 -all files are stored in a valid format that the game can read
--all .xna files are encrypted to the FDF2 private keys, all other files are in plain text. Check out Tools > Decrypt/Encrypt in other cases
+-all .xna files are encrypted, all other files are in plain text. Check out Tools > Decrypt/Encrypt in other cases
 
 Needed changes:
 remove the context strings from pattern definitions in its view. The amount of defined things should be obvious from context and not obstruct the view.
@@ -35,7 +35,7 @@ Planned aditions:
 
 Current Usability Issues:
 -no warning when closing unsaved changes
--saving files doesn't provide a default filename
+-saving files doesn't provide a default filename (fixed for de/encryption tools)
 -closing tabs is clunky
 -
 
