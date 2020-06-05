@@ -45,31 +45,31 @@ namespace FDFEditor.Backend
             int num1 = int.Parse(str1[3]);
             for (int i = 0; i < num1; i++)
             {
-                l.Content.Add(LayerContent.Parse(stream.ReadLine()));
+                l.Content.Add(LayerContent.Parse(stream.ReadLine(), LayerContent.ContentType.Batch));
             }
 
             num1 = int.Parse(str1[4]);
             for (int i = 0; i < num1; i++)
             {
-                l.Content.Add(LayerContent.Parse(stream.ReadLine()));
+                l.Content.Add(LayerContent.Parse(stream.ReadLine(), LayerContent.ContentType.Laser));
             }
 
             num1 = int.Parse(str1[5]);
             for (int i = 0; i < num1; i++)
             {
-                l.Content.Add(LayerContent.Parse(stream.ReadLine()));
+                l.Content.Add(LayerContent.Parse(stream.ReadLine(), LayerContent.ContentType.Cover));
             }
 
             num1 = int.Parse(str1[6]);
             for (int i = 0; i < num1; i++)
             {
-                l.Content.Add(LayerContent.Parse(stream.ReadLine()));
+                l.Content.Add(LayerContent.Parse(stream.ReadLine(), LayerContent.ContentType.Rebound));
             }
 
             num1 = int.Parse(str1[7]);
             for (int i = 0; i < num1; i++)
             {
-                l.Content.Add(LayerContent.Parse(stream.ReadLine()));
+                l.Content.Add(LayerContent.Parse(stream.ReadLine(), LayerContent.ContentType.Force));
             }
 
 
@@ -92,10 +92,10 @@ namespace FDFEditor.Backend
             }
             else
             {
-                ret += string.Format("{0},{1},{2},{3},{4},{5},{6},{7}\n", name, begin, end, numThings[0], numThings[1], numThings[2], numThings[3], numThings[4]);
+                ret += string.Format("{0},{1},{2},{3},{4},{5},{6},{7}", name, begin, end, numThings[0], numThings[1], numThings[2], numThings[3], numThings[4]);
                 foreach (LayerContent b in Content)
                 {
-                    ret += b.GetString();
+                    ret += "\n" + b.GetString();
                 }
                 return ret;
             }

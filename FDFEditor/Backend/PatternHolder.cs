@@ -29,34 +29,31 @@ namespace FDFEditor.Backend
             string str1 = stream.ReadLine();
             if (str1.Contains("Types"))
             {
-                p.Types += str1;
                 for (int i = 0; i < int.Parse(str1.Split(' ')[0]); i++)
                 {
-                    p.Types += "\n" + stream.ReadLine(); //bullet type definitions
+                    p.Types += stream.ReadLine() + "\n"; //bullet type definitions
                 }
                 str1 = stream.ReadLine();
             }
             if (str1.Contains("GlobalEvents"))
             {
-                p.GlobalEvents += str1;
                 for (int i = 0; i < int.Parse(str1.Split(' ')[0]); i++)
                 {
-                    p.GlobalEvents += "\n" + stream.ReadLine(); //global event definitions
+                    p.GlobalEvents += stream.ReadLine() + "\n"; //global event definitions
                 }
                 str1 = stream.ReadLine();
             }
             if (str1.Contains("Sounds"))
             {
-                p.Sounds += str1;
                 for (int i = 0; i < int.Parse(str1.Split(' ')[0]); i++)
                 {
-                    p.Sounds += "\n" + stream.ReadLine(); //sound definitions
+                    p.Sounds += stream.ReadLine() + "\n"; //sound definitions
                 }
                 str1 = stream.ReadLine();
             }
-            if (str1.Contains(','))
+            if (str1.Contains("Center"))
             {
-                p.Center += str1;
+                p.Center += str1.Remove(0, 7);
             }
             p.TotalFrames = int.Parse(stream.ReadLine().Split(':')[1]);
             for (int i = 0; i < p.Layers.Length; i++)
@@ -73,23 +70,28 @@ namespace FDFEditor.Backend
             string ret = "Crazy Storm Data 1.01\n";
             if (Types.Trim() != "")
             {
+                ret += Types.Split('\n').Length + " Types:\n";
                 ret += Types + "\n";
             }
             if (GlobalEvents.Trim() != "")
             {
+                ret += GlobalEvents.Split('\n').Length + " GlobalEvents:\n";
                 ret += GlobalEvents + "\n";
             }
             if (Sounds.Trim() != "")
             {
+                ret += Sounds.Split('\n').Length + " Sounds:\n";
                 ret += Sounds + "\n";
             }
             if (Center.Trim() != "")
             {
+                ret += "Center:";
                 ret += Center + "\n";
             }
+            ret += "TotalFrame:" + TotalFrames;
             for (int i = 0; i < Layers.Length; i++)
             {
-                ret += Layers[i].GetString();
+                ret += Layers[i].GetString() + "\n";
             }
 
             return ret;

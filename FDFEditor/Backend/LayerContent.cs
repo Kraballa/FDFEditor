@@ -10,17 +10,22 @@ namespace FDFEditor.Backend
     /// </summary>
     public class LayerContent : IHolder
     {
-
-        #region values
+        public enum ContentType
+        {
+            Batch,
+            Laser,
+            Cover,
+            Rebound,
+            Force
+        }
 
         public string[] fields { get; set; }
-
-        #endregion
+        public ContentType Type;
 
         private IView View;
         private LayerContent() { }
 
-        public static LayerContent Parse(string batch)
+        public static LayerContent Parse(string batch, ContentType type)
         {
             LayerContent b = new LayerContent();
             string[] str = batch.Split(',');
@@ -30,8 +35,18 @@ namespace FDFEditor.Backend
             {
                 b.fields[i] = str[i];
             }
+            b.Type = type;
+            switch (b.Type)
+            {
+                case ContentType.Batch:
+                default:
+                    b.View = new BatchView(b);
+                    break;
 
-            b.View = new BatchView(b);
+                case ContentType.Laser:
+                    b.View = new LaserView(b);
+                    break;
+            }
             return b;
         }
 
