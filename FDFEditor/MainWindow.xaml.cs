@@ -88,15 +88,7 @@ namespace FDFEditor
 
         private void CloseCommand(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
         {
-            if (MainTabControl.Items.Count > 0)
-            {
-                Console.WriteLine(MainTabControl.SelectedIndex);
-                MainTabControl.Items.Remove(MainTabControl.SelectedItem);
-            }
-            else
-            {
-                System.Windows.Application.Current.Shutdown();
-            }
+            MainTabControl.Items.Remove(MainTabControl.SelectedItem);
         }
 
         private void ExitCommand(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
@@ -286,6 +278,11 @@ namespace FDFEditor
                 FDF1Checkbox.IsChecked = false;
                 FDF2Checkbox.IsChecked = true;
             }
+        }
+
+        private void CloseAllTabs(object sender, RoutedEventArgs e)
+        {
+            MainTabControl.Items.Clear();
         }
     }
 }

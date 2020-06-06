@@ -161,11 +161,11 @@ fy:
 r:
 rdirection:
 rdirections:
-tiao:
+tiao: number of bullets fired (afaik)
 t: frames between firing
 fdirection:
 fdirections:
-range:
+range: the spread of bullets fired. 360 -> fire <tiao> bullets in a circle.
 
 speed:
 speedd:
