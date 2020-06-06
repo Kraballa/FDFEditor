@@ -50,9 +50,17 @@ namespace FDFEditor.Backend
                 default:
                     b.View = new BatchView(b);
                     break;
-
                 case ContentType.Laser:
                     b.View = new LaserView(b);
+                    break;
+                case ContentType.Cover:
+                    b.View = new CoverView(b);
+                    break;
+                case ContentType.Rebound:
+                    b.View = new ReboundView(b);
+                    break;
+                case ContentType.Force:
+                    b.View = new ForceView(b);
                     break;
             }
             return b;
