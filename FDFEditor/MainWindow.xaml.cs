@@ -126,6 +126,7 @@ namespace FDFEditor
                 SaveFileDialog saveDialog = new SaveFileDialog();
                 saveDialog.Filter = "Xna File (*.xna)|*.xna|Text File (*.txt)|*.txt";
                 saveDialog.Title = "Save As";
+                saveDialog.FileName = ((TabItem)MainTabControl.Items[MainTabControl.SelectedIndex]).Header as string;
                 if (saveDialog.ShowDialog() == true)
                 {
                     try

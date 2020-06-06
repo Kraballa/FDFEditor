@@ -162,7 +162,7 @@ r:
 rdirection:
 rdirections:
 tiao:
-t:
+t: frames between firing
 fdirection:
 fdirections:
 range:
