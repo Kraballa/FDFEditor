@@ -253,7 +253,7 @@ namespace FDFEditor
             var tabItemTarget = e.Source as TabItem;
             var tabItemSource = e.Data.GetData(typeof(TabItem)) as TabItem;
 
-            if (!tabItemTarget.Equals(tabItemSource))
+            if (tabItemTarget != null && !tabItemTarget.Equals(tabItemSource))
             {
                 var tabControl = tabItemTarget.Parent as TabControl;
                 int sourceIndex = tabControl.Items.IndexOf(tabItemSource);
