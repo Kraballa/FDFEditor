@@ -6,5 +6,6 @@ namespace FDFEditor.Control
 {
     public interface IView
     {
+
     }
 }
