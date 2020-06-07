@@ -26,18 +26,16 @@ Some more assumptions this program makes:
 -all files are stored in a valid format that the game can read
 -all .xna files are encrypted, all other files are in plain text. Check out Tools > Decrypt/Encrypt in other cases
 
-Needed changes:
-remove the context strings from pattern definitions in its view. The amount of defined things should be obvious from context and not obstruct the view.
-
 Planned aditions:
+-options tab to select keys in detail. This would enable decrypting all resources.
 -some kind of logging system to see what changes have been made
 -some kind of backup system in case a change breaks the game
+-ctrl + w -> close current tab
+-option for backing up files before starting to edit them.
 
 Current Usability Issues:
 -no warning when closing unsaved changes
--saving files doesn't provide a default filename (fixed for de/encryption tools)
--closing tabs is clunky
--
+-closing tabs is still clunky, although closing all tabs is easy now
 
 THIS TOOL WAS MADE WITH GOOD INTENTIONS. DO NOT USE IT FOR MALICIOUS PURPOSES. I WILL TAKE NO RESPONSIBILITY
 FOR ANY LEGAL ACTIONS BROUGHT AGAINST YOU.
