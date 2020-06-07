@@ -148,66 +148,6 @@ LastBoss   //no braces
 LoadBackGround
 ShowTitle
 
-
-Batch Definition parameter explanations:
-ID: index of the batch definition
-parentID:
-binding: unused variable
-bindID: ID of bound object, i.e. other bullets. -1 for no binding. Being bound means no changes to the bullets position, speed, or any other changing variable but instead follow a batch
-bindWithSpeed: Not sure, something like bullet's fdirection gets offset by the batches fdirection?
-begin: now many frames to wait before starting to fire
-life: number of shooting cycles. delay between them is 't'
-fx:
-fy:
-
-r:
-rdirection:
-rdirections:
-tiao: number of bullets fired
-t: frames between firing
-fdirection:
-fdirections:
-range: the spread of bullets fired. 360 -> fire <tiao> bullets in a circle.
-
-speed:
-speedd:
-speedds:
-aspeed:
-aspeedd:
-aspeedds:
-
-sonlife:
-type: bullet sprite
-wscale: multiplicative sprite scale
-hscale: multiplicative sprite scale
-colorR: red value
-colorG: green value
-colorB: blue value
-alpha: alpha value
-head:
-heads:
-withspeedd:
-
-sonspeed:
-sonspeedd:
-sonspeedds:
-sonaspeed:
-sonaspeedd:
-sonaspeedds:
-
-xscale:
-yscale:
-
-Mist:
-Dispel:
-Blend: alpha blend
-Afterimage: afterimage
-Outdispel:
-Invincible: probably bomb and border invoncibility
-ParentEvents:
-SonEvents:
-rand.fx:
-
 Event Strings:
 且 = And
 或 = Or

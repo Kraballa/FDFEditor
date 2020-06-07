@@ -21,8 +21,8 @@
             <local:TitledTextBox Title="parentId" Text="{Binding Path=fields[1], Mode=TwoWay}"/>
             <local:TitledTextBox Title="x" Text="{Binding Path=fields[2], Mode=TwoWay}"/>
             <local:TitledTextBox Title="y" Text="{Binding Path=fields[3], Mode=TwoWay}"/>
-            <local:TitledTextBox Title="begin" Text="{Binding Path=fields[4], Mode=TwoWay}"/>
-            <local:TitledTextBox Title="life" Text="{Binding Path=fields[5], Mode=TwoWay}"/>
+            <local:TitledTextBox Title="startFrame" Text="{Binding Path=fields[4], Mode=TwoWay}"/>
+            <local:TitledTextBox Title="duration" Text="{Binding Path=fields[5], Mode=TwoWay}"/>
             <local:TitledTextBox Title="halfw" Text="{Binding Path=fields[6], Mode=TwoWay}"/>
             <local:TitledTextBox Title="halfh" Text="{Binding Path=fields[7], Mode=TwoWay}"/>
             <local:TitledTextBox Title="circle" Text="{Binding Path=fields[8], Mode=TwoWay}"/>

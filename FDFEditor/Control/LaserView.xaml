@@ -24,15 +24,15 @@
             <local:TitledTextBox Title="bindWithSpeedd" Text="{Binding Path=fields[4], Mode=TwoWay}"/>
             <local:TitledTextBox Title="x" Text="{Binding Path=fields[6], Mode=TwoWay}"/>
             <local:TitledTextBox Title="y" Text="{Binding Path=fields[7], Mode=TwoWay}"/>
-            <local:TitledTextBox Title="begin" Text="{Binding Path=fields[8], Mode=TwoWay}"/>
-            <local:TitledTextBox Title="life" Text="{Binding Path=fields[9], Mode=TwoWay}"/>
-            <local:TitledTextBox Title="r" Text="{Binding Path=fields[10], Mode=TwoWay}"/>
-            <local:TitledTextBox Title="rdirection" Text="{Binding Path=fields[11], Mode=TwoWay}"/>
+            <local:TitledTextBox Title="startFrame" Text="{Binding Path=fields[8], Mode=TwoWay}"/>
+            <local:TitledTextBox Title="duration" Text="{Binding Path=fields[9], Mode=TwoWay}"/>
+            <local:TitledTextBox Title="spawnOffset" Text="{Binding Path=fields[10], Mode=TwoWay}"/>
+            <local:TitledTextBox Title="offsetDirection" Text="{Binding Path=fields[11], Mode=TwoWay}"/>
         </WrapPanel>
         <WrapPanel Orientation="Horizontal" Style="{StaticResource spStyle}">
-            <local:TitledTextBox Title="rdirections" Text="{Binding Path=fields[12], Mode=TwoWay}"/>
-            <local:TitledTextBox Title="tiao" Text="{Binding Path=fields[13], Mode=TwoWay}"/>
-            <local:TitledTextBox Title="t" Text="{Binding Path=fields[14], Mode=TwoWay}"/>
+            <local:TitledTextBox Title="offsetVector" Text="{Binding Path=fields[12], Mode=TwoWay}"/>
+            <local:TitledTextBox Title="numBullets" Text="{Binding Path=fields[13], Mode=TwoWay}"/>
+            <local:TitledTextBox Title="shotPause" Text="{Binding Path=fields[14], Mode=TwoWay}"/>
             <local:TitledTextBox Title="fdirection" Text="{Binding Path=fields[15], Mode=TwoWay}"/>
             <local:TitledTextBox Title="fdirections" Text="{Binding Path=fields[16], Mode=TwoWay}"/>
             <local:TitledTextBox Title="range" Text="{Binding Path=fields[17], Mode=TwoWay}"/>
@@ -46,7 +46,7 @@
             <local:TitledTextBox Title="aspeedds" Text="{Binding Path=fields[23], Mode=TwoWay}"/>
         </WrapPanel>
         <WrapPanel Orientation="Horizontal" Style="{StaticResource spStyle}">
-            <local:TitledTextBox Title="sonlife" Text="{Binding Path=fields[24], Mode=TwoWay}"/>
+            <local:TitledTextBox Title="sonDuration" Text="{Binding Path=fields[24], Mode=TwoWay}"/>
             <local:TitledTextBox Title="type" Text="{Binding Path=fields[25], Mode=TwoWay}"/>
             <local:TitledTextBox Title="wscale" Text="{Binding Path=fields[26], Mode=TwoWay}"/>
             <local:TitledTextBox Title="longs" Text="{Binding Path=fields[27], Mode=TwoWay}"/>
