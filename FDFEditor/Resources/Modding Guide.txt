@@ -114,9 +114,11 @@ SetEnemyParent(string,string)
 
 SetEnemyItems(float,float,float,float,float,float)
 
-SetEnemy() //this one's more complex
+SetEnemy(float,float,float,float,float,int,int,int,string (optional)) //this one's more complex
+sprite,?,?,?,?,hp,stage,barrage,id   //id is used to copy barrage when using copyenemy, default = 0
 
-CopyEnemy() //also more complex
+CopyEnemy(int,int,?,?,?,string) //also more complex
+x,y,?,?,?,bId  //bId is the id of the enemy whose barrage should be copied
 
 Saveid(string)
 
@@ -153,15 +155,15 @@ parentID:
 binding: unused variable
 bindID: ID of bound object, i.e. other bullets. -1 for no binding. Being bound means no changes to the bullets position, speed, or any other changing variable but instead follow a batch
 bindWithSpeed: Not sure, something like bullet's fdirection gets offset by the batches fdirection?
-begin:
-life:
+begin: now many frames to wait before starting to fire
+life: number of shooting cycles. delay between them is 't'
 fx:
 fy:
 
 r:
 rdirection:
 rdirections:
-tiao: number of bullets fired (afaik)
+tiao: number of bullets fired
 t: frames between firing
 fdirection:
 fdirections:
@@ -175,13 +177,13 @@ aspeedd:
 aspeedds:
 
 sonlife:
-type:
-wscale:
-hscale:
-colorR:
-colorG:
-colorB:
-alpha:
+type: bullet sprite
+wscale: multiplicative sprite scale
+hscale: multiplicative sprite scale
+colorR: red value
+colorG: green value
+colorB: blue value
+alpha: alpha value
 head:
 heads:
 withspeedd:
@@ -198,11 +200,56 @@ yscale:
 
 Mist:
 Dispel:
-Blend:
-Afterimage:
+Blend: alpha blend
+Afterimage: afterimage
 Outdispel:
-Invincible:
+Invincible: probably bomb and border invoncibility
 ParentEvents:
 SonEvents:
 rand.fx:
 
+Event Strings:
+且 = And
+或 = Or
+>=<
+变化到 = Change To
+增加 = increase
+减少 = reduce
+恢复 = resume, recover
+发射 = launch
+新事件组 = new Event Group
+当前帧 = Current Frame
+帧 = frame
+角度 = Angle
+正比 = proportional
+变化 = Variety
+到自机 = To Player
+子弹 = bullet
+速度 = speed
+变化到 = Change To
+
+新事件组|1|0|
+当前帧=1：角度增加360，正比，180帧;&
+translated:
+new event group|1|0|
+frame=1: Angle Increase 360, proportional, 180 frames;&
+Verbally: 
+-Create a new Event Group (tag = 1, t = 0, addtime = CurrentFrame = 1).
+-Increase Angle by 360, relative, over 180 frames
+
+新事件组|1|0|
+当前帧=1：角度变化到自机，正比，1帧;
+当前帧=1：子弹速度变化到2，正比，8帧;&
+translated:
+new event group|1|0|
+frame=1 : Angle Variety To Player, Proportional, 1 Frame;
+frame=1 : Change Bullet Speed To 2, Proportional, 8 Frames;&
+
+新事件组|1|0|
+当前帧=2：角度减少50，正比，1帧;
+当前帧=1：子弹速度变化到2，正比，8帧;
+当前帧=1：角度变化到自机，正比，1帧;&
+new event group|1|0|
+frame=2:Angle reduce 50, Proportional, 1frame;
+frame=1:bullet speed change to 2, proportional, 8 frames;
+frame=1:Angle Variety to player, proportional, 1 frame;&
