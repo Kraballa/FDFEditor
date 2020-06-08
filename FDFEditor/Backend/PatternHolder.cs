@@ -41,6 +41,7 @@ namespace FDFEditor.Backend
                         p.Types += "\n";
                     p.Types += stream.ReadLine(); //bullet type definitions
                 }
+                p.Types = p.Types.Trim();
                 str1 = stream.ReadLine();
             }
             if (str1.Contains("GlobalEvents"))
