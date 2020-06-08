@@ -21,10 +21,10 @@
     <DockPanel>
         <Menu DockPanel.Dock="Top" Width="Auto">
             <MenuItem Header="_File">
-                <MenuItem Header="_New" />
+                <MenuItem Header="_New File" Click="NewItem"/>
                 <MenuItem Header="_Save" Command="Save" InputGestureText="Ctrl+S"/>
                 <MenuItem Header="Open in Pattern View" Click="OpenAsPattern"/>
-                <MenuItem Header="_Open" Command="Open" InputGestureText="Ctrl+O"/>
+                <MenuItem Header="_Open in Text View" Command="Open" InputGestureText="Ctrl+O"/>
                 <Separator/>
                 <MenuItem Header="_Close Tab" Command="Close"/>
                 <Separator/>

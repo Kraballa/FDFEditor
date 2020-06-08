@@ -121,6 +121,7 @@ namespace FDFEditor
                 saveDialog.FileName = ((TabItem)MainTabControl.Items[MainTabControl.SelectedIndex]).Header as string;
                 if (saveDialog.ShowDialog() == true)
                 {
+                    //((TabItem)MainTabControl.Items[MainTabControl.SelectedIndex]).Header = Path.GetFileNameWithoutExtension(saveDialog.FileName);
                     try
                     {
                         if (Path.GetExtension(saveDialog.FileName).Contains("xna"))
@@ -283,6 +284,11 @@ namespace FDFEditor
         private void CloseAllTabs(object sender, RoutedEventArgs e)
         {
             MainTabControl.Items.Clear();
+        }
+
+        private void NewItem(object sender, RoutedEventArgs e)
+        {
+            OpenTab("file", new TextEditorTabItem("", false));
         }
     }
 }
