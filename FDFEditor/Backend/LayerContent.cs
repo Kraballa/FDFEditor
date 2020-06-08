@@ -21,6 +21,50 @@ namespace FDFEditor.Backend
         }
 
         public string[] fields { get; set; }
+
+        public string ParentEvent
+        {
+            get
+            {
+                string s = "";
+                switch (Type)
+                {
+                    case ContentType.Batch:
+                        s = fields[51];
+                        break;
+                    case ContentType.Laser:
+                        s = fields[42];
+                        break;
+                    case ContentType.Cover:
+                        s = fields[17];
+                        break;
+                    case ContentType.Rebound:
+                        s = fields[13];
+                        break;
+                }
+                return EventParser.Parse(s);
+            }
+            set
+            {
+                string s = EventParser.Encode(value);
+                switch (Type)
+                {
+                    case ContentType.Batch:
+                        fields[51] = s;
+                        break;
+                    case ContentType.Laser:
+                        fields[42] = s;
+                        break;
+                    case ContentType.Cover:
+                        fields[17] = s;
+                        break;
+                    case ContentType.Rebound:
+                        fields[13] = s;
+                        break;
+                }
+            }
+        }
+
         public ContentType Type;
 
         private IView View;
@@ -63,6 +107,7 @@ namespace FDFEditor.Backend
                     b.View = new ForceView(b);
                     break;
             }
+
             return b;
         }
 

@@ -39,7 +39,11 @@ namespace FDFEditor.Backend
 
         public static string Encode(string @event)
         {
-            return "";
+            foreach (KeyValuePair<string, string> kv in commands)
+            {
+                @event.Replace(kv.Value, kv.Key);
+            }
+            return @event;
         }
     }
 }
