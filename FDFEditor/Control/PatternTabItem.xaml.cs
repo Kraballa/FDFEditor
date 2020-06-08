@@ -70,7 +70,10 @@ namespace FDFEditor.Control
         private void TabItemSelected(object sender, RoutedEventArgs e)
         {
             ViewHolder.Children.Clear();
-            ViewHolder.Children.Add((UIElement)ViewMap[(TreeViewItem)sender].GetView());
+            if (ViewMap[(TreeViewItem)sender].GetView() != null)
+            {
+                ViewHolder.Children.Add((UIElement)ViewMap[(TreeViewItem)sender].GetView());
+            }
             e.Handled = true;
         }
 
