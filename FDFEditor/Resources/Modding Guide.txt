@@ -161,7 +161,7 @@ Event Strings:
 当前帧 = Current Frame
 帧 = frame
 角度 = Angle
-正比 = proportional
+正比 = relative
 变化 = Variety
 到自机 = To Player
 子弹 = bullet
@@ -193,3 +193,8 @@ new event group|1|0|
 frame=2:Angle reduce 50, Proportional, 1frame;
 frame=1:bullet speed change to 2, proportional, 8 frames;
 frame=1:Angle Variety to player, proportional, 1 frame;&
+
+新事件组|1|0|
+当前帧=361：子弹速度变化到-3，正比，61帧;
+frame = 361 : 
+当前帧=1：子弹速度变化到0.01，正比，61帧;&

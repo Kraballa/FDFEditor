@@ -83,6 +83,7 @@ namespace FDFEditor.Backend
             StringBuilder ret = new StringBuilder("Crazy Storm Data 1.01\n");
             if (Types.Trim() != "")
             {
+                Types = Types.Trim();
                 ret.Append(Types.Split('\n').Length + " Types:\n");
                 ret.Append(Types + "\n");
             }
