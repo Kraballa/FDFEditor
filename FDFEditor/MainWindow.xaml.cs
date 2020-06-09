@@ -27,7 +27,7 @@ namespace FDFEditor
                 Stream s;
                 if (encrypted)
                 {
-                    s = Crypt.OpenCryptFile(path, encrypted, FDF1Checkbox.IsChecked);
+                    s = Crypt.OpenCryptFile(path, encrypted, FDF1Checkbox.IsChecked, GetSelectedKeyIndex());
                 }
                 else
                 {
@@ -50,7 +50,7 @@ namespace FDFEditor
                 Stream s;
                 if (encrypted)
                 {
-                    s = Crypt.OpenCryptFile(path, true, FDF1Checkbox.IsChecked);
+                    s = Crypt.OpenCryptFile(path, true, FDF1Checkbox.IsChecked, GetSelectedKeyIndex());
                 }
                 else
                 {
@@ -126,7 +126,7 @@ namespace FDFEditor
                     {
                         if (Path.GetExtension(saveDialog.FileName).Contains("xna"))
                         {
-                            Crypt.CryptToFile(saveDialog.FileName, text, FDF1Checkbox.IsChecked);
+                            Crypt.CryptToFile(saveDialog.FileName, text, FDF1Checkbox.IsChecked, GetSelectedKeyIndex());
                         }
                         else
                         {
@@ -157,7 +157,7 @@ namespace FDFEditor
                 if (saveDialog.ShowDialog() == true)
                 {
                     string to = saveDialog.FileName;
-                    Crypt.CryptAndMove(from, to, false, FDF1Checkbox.IsChecked);
+                    Crypt.CryptAndMove(from, to, false, FDF1Checkbox.IsChecked, GetSelectedKeyIndex());
                 }
             }
         }
@@ -172,15 +172,15 @@ namespace FDFEditor
                 string from = openDialog.FileName;
 
                 SaveFileDialog saveDialog = new SaveFileDialog();
-                saveDialog.Filter = "Txt Files (*.txt)|*.txt|Any File (*.*)|*.*";
+                saveDialog.Filter = "Any File (*.*)|*.*";
                 saveDialog.Title = "Save " + Path.GetFileName(from) + " Decrypted As";
-                saveDialog.FileName = Path.GetFileNameWithoutExtension(from);
+                saveDialog.FileName = Path.GetFileNameWithoutExtension(from) + "_decrypted";
                 if (saveDialog.ShowDialog() == true)
                 {
                     string to = saveDialog.FileName;
                     try
                     {
-                        Crypt.CryptAndMove(from, to, true, FDF1Checkbox.IsChecked);
+                        Crypt.CryptAndMove(from, to, true, FDF1Checkbox.IsChecked, GetSelectedKeyIndex());
                     }
                     catch (Exception ex)
                     {
@@ -266,19 +266,12 @@ namespace FDFEditor
             MainTabControl.SelectedIndex = MainTabControl.Items.IndexOf(tab);
         }
 
+        //There are no menu radiobuttons and this is the simplest way to do it
         private void FDFCheckbox_Click(object sender, RoutedEventArgs e)
         {
             MenuItem cb = sender as MenuItem;
-            if (cb.Name.Contains("FDF1"))
-            {
-                FDF1Checkbox.IsChecked = true;
-                FDF2Checkbox.IsChecked = false;
-            }
-            else
-            {
-                FDF1Checkbox.IsChecked = false;
-                FDF2Checkbox.IsChecked = true;
-            }
+            FDF1Checkbox.IsChecked = FDF1Checkbox.Name == cb.Name;
+            FDF2Checkbox.IsChecked = FDF2Checkbox.Name == cb.Name;
         }
 
         private void CloseAllTabs(object sender, RoutedEventArgs e)
@@ -289,6 +282,32 @@ namespace FDFEditor
         private void NewItem(object sender, RoutedEventArgs e)
         {
             OpenTab("file", new TextEditorTabItem("", false));
+        }
+
+        //There are no menu radiobuttons and this is the simplest way to do it
+        private void Key_Click(object sender, RoutedEventArgs e)
+        {
+            MenuItem cb = sender as MenuItem;
+            Key0.IsChecked = Key0.Name == cb.Name;
+            Key1.IsChecked = Key1.Name == cb.Name;
+            Key2.IsChecked = Key2.Name == cb.Name;
+            Key3.IsChecked = Key3.Name == cb.Name;
+        }
+
+        private int GetSelectedKeyIndex()
+        {
+            if (Key0.IsChecked)
+                return 0;
+            if (Key1.IsChecked)
+                return 1;
+            if (Key2.IsChecked)
+                return 2;
+            return 3;
+        }
+
+        private void OpenHowToDoThings(object sender, RoutedEventArgs e)
+        {
+            OpenTab("How to do Things", new TextEditorTabItem(new StreamReader("Resources/How to do Things.txt"), true));
         }
     }
 }

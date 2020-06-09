@@ -32,9 +32,15 @@
                 <Separator/>
                 <MenuItem Header="E_xit" Command="Stop" InputGestureText="Ctrl+X"/>
             </MenuItem>
-            <MenuItem Header="Keys">
+            <MenuItem Header="Game">
                 <MenuItem Header="FDF1 v1.3 and below" IsCheckable="True" x:Name="FDF1Checkbox" Click="FDFCheckbox_Click"/>
                 <MenuItem Header="FDF1/2 Steam" IsCheckable="True" x:Name="FDF2Checkbox" Click="FDFCheckbox_Click" IsChecked="True"/>
+            </MenuItem>
+            <MenuItem Header="Key">
+                <MenuItem Header="0" IsCheckable="True" x:Name="Key0" Click="Key_Click"/>
+                <MenuItem Header="1" IsCheckable="True" x:Name="Key1" Click="Key_Click"/>
+                <MenuItem Header="2 (default)" IsCheckable="True" x:Name="Key2" Click="Key_Click" IsChecked="True"/>
+                <MenuItem Header="3" IsCheckable="True" x:Name="Key3" Click="Key_Click"/>
             </MenuItem>
             <MenuItem Header="Tools">
                 <MenuItem Header="Decrypt" Click="ToolDecrypt"/>
@@ -43,7 +49,9 @@
                 <MenuItem Header="New Scratchpad" Click="OpenScratchpad"/>
             </MenuItem>
             <MenuItem Header="Help">
-                <MenuItem Header="About" Click="OpenAbout"/>
+                <MenuItem Header="How to do Things" Click="OpenHowToDoThings"/>
+                <Separator/>
+                <MenuItem Header="About this Program" Click="OpenAbout"/>
                 <MenuItem Header="Modding Guide" Click="OpenModdingGuide"/>
                 <Separator/>
                 <MenuItem Header="License (GPL3)" Click="OpenLicense"/>

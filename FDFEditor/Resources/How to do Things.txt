@@ -1,0 +1,15 @@
+﻿How to do Things:
+A step by step guide on how to start editing files.
+
+1. Under "Game" select the game you're going to be editing. Either the Steam versions of FDF1 and 2, or the prerelease found on sites like Moriyashrine or Touhouwiki.
+
+2. Think about what you want to edit. Dialogue? Bullet patterns? Stages? Go to "Help > Modding Guide" and look at the file table to find out what files contain the respective data.
+If you want to edit images, use "Tool > Decrypt" and save as ".png". Use the image editing software of your choice and reencrypt using "Tool > Encrypt".
+Remember that the "Game" and "Key" options are used both for de- and encryption, so use the right ones when saving! 
+
+3. Under "Key" select the index of the decryption key depending on what files you want to edit. If you don't know which, try them all and see what works.
+-Key 0: FDF1 Bullet Patterns, FDF1 & 2 Graphics
+-Key 2: FDF2 all files inside the "Content/Data" folder, FDF1 dialogue.
+I don't know if it's the same with the non-steam version.
+
+4. Make changes and save the file wherever you found it.
