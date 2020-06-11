@@ -8,8 +8,9 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel>
         <local:TitledTextBox Title="Types" Text="{Binding Path=Types, Mode=TwoWay}"/>
-        <local:TitledTextBox Title="GlobalEvents" Text="{Binding Path=GlobalEvents}"/>
-        <local:TitledTextBox Title="Sounds" Text="{Binding Path=Sounds}"/>
-        <local:TitledTextBox Title="Center" Text="{Binding Path=Center}"/>
+        <local:TitledTextBox Title="GlobalEvents" Text="{Binding Path=GlobalEvents, Mode=TwoWay}"/>
+        <local:TitledTextBox Title="Sounds" Text="{Binding Path=Sounds, Mode=TwoWay}"/>
+        <local:TitledTextBox Title="Center" Text="{Binding Path=Center, Mode=TwoWay}"/>
+        <!--<local:TitledTextBox Title="Total Frames" Text="{Binding Path=TotalFrames, Mode=TwoWay}"/>-->
     </StackPanel>
 </UserControl>

@@ -198,3 +198,5 @@ frame=1:Angle Variety to player, proportional, 1 frame;&
 当前帧=361：子弹速度变化到-3，正比，61帧;
 frame = 361 : 
 当前帧=1：子弹速度变化到0.01，正比，61帧;&
+
+当前帧>1：角度变化到50，正比，90帧;

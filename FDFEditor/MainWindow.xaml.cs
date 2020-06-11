@@ -20,50 +20,7 @@ namespace FDFEditor
             InitializeComponent();
         }
 
-        private void OpenAsPattern(string path, bool encrypted = true)
-        {
-            try
-            {
-                Stream s;
-                if (encrypted)
-                {
-                    s = Crypt.OpenCryptFile(path, encrypted, FDF1Checkbox.IsChecked, GetSelectedKeyIndex());
-                }
-                else
-                {
-                    s = new MemoryStream(File.ReadAllBytes(path));
-                }
-                PatternHolder pHolder = PatternHolder.Parse(s);
-                OpenTab(Path.GetFileName(path), new PatternTabItem(pHolder));
-            }
-            catch (Exception e)
-            {
-                string text = "Error. Either the file couldn't be parsed or the decryption failed.\n" + e;
-                MessageBox.Show(text, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        private void OpenAsText(string path, bool encrypted = true)
-        {
-            try
-            {
-                Stream s;
-                if (encrypted)
-                {
-                    s = Crypt.OpenCryptFile(path, true, FDF1Checkbox.IsChecked, GetSelectedKeyIndex());
-                }
-                else
-                {
-                    s = new MemoryStream(File.ReadAllBytes(path));
-                }
-                OpenTab(Path.GetFileName(path), new TextEditorTabItem(s));
-            }
-            catch (Exception e)
-            {
-                string text = "Error reading file. It probably was already decrypted.\n" + e;
-                MessageBox.Show(text, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
+        #region Commands
 
         private void OpenCommand(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
         {
@@ -108,7 +65,7 @@ namespace FDFEditor
         {
             if (MainTabControl.Items.Count == 0)
             {
-                MessageBox.Show("No tab opened.", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("No tab opened.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
             {
@@ -116,7 +73,7 @@ namespace FDFEditor
                 string text = current.GetPlainText();
                 Console.WriteLine(text);
                 SaveFileDialog saveDialog = new SaveFileDialog();
-                saveDialog.Filter = "Xna File (*.xna)|*.xna|Text File (*.txt)|*.txt";
+                saveDialog.Filter = "Encrypted Xna File (*.xna)|*.xna|Encrypted File (*.*)|*.*|Unencrypted File (*.*)|*.*";
                 saveDialog.Title = "Save As";
                 saveDialog.FileName = ((TabItem)MainTabControl.Items[MainTabControl.SelectedIndex]).Header as string;
                 if (saveDialog.ShowDialog() == true)
@@ -124,7 +81,7 @@ namespace FDFEditor
                     //((TabItem)MainTabControl.Items[MainTabControl.SelectedIndex]).Header = Path.GetFileNameWithoutExtension(saveDialog.FileName);
                     try
                     {
-                        if (Path.GetExtension(saveDialog.FileName).Contains("xna"))
+                        if (saveDialog.FilterIndex == 0)
                         {
                             Crypt.CryptToFile(saveDialog.FileName, text, FDF1Checkbox.IsChecked, GetSelectedKeyIndex());
                         }
@@ -141,10 +98,97 @@ namespace FDFEditor
             }
         }
 
+        #endregion
+
+        #region Opening Events
+
+        private void OpenAsText(string path, bool encrypted = true)
+        {
+            try
+            {
+                Stream s;
+                if (encrypted)
+                {
+                    s = Crypt.OpenCryptFile(path, true, FDF1Checkbox.IsChecked, GetSelectedKeyIndex());
+                }
+                else
+                {
+                    s = new MemoryStream(File.ReadAllBytes(path));
+                }
+                OpenTab(Path.GetFileName(path), new TextEditorTabItem(s));
+            }
+            catch (Exception e)
+            {
+                string text = "Error reading file. It probably was already decrypted.\n" + e;
+                MessageBox.Show(text, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void OpenAsPattern(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "Encrypted File (*.*)|*.*|Unencrypted File (*.*)|*.*";
+            dialog.Multiselect = true;
+            if (dialog.ShowDialog() == true)
+            {
+                foreach (string path in dialog.FileNames)
+                {
+                    try
+                    {
+                        Stream s;
+                        if (dialog.FilterIndex == 0)
+                        {
+                            s = Crypt.OpenCryptFile(path, true, FDF1Checkbox.IsChecked, GetSelectedKeyIndex());
+                        }
+                        else
+                        {
+                            s = new MemoryStream(File.ReadAllBytes(path));
+                        }
+                        PatternHolder pHolder = PatternHolder.Parse(s);
+                        OpenTab(Path.GetFileName(path), new PatternTabItem(pHolder));
+                    }
+                    catch (Exception ex)
+                    {
+                        string text = "Error. Either the file couldn't be parsed or the decryption failed.\n" + ex;
+                        MessageBox.Show(text, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+            }
+        }
+
+        private void OpenScratchpad(object sender, RoutedEventArgs e)
+        {
+            OpenTab("Scratchpad", new TextEditorTabItem("Scratchpad\n----------\n\n"));
+        }
+
+        private void OpenAbout(object sender, RoutedEventArgs e)
+        {
+            OpenTab("About", new TextEditorTabItem(new StreamReader("Resources/About.txt"), true));
+        }
+
+        private void OpenLicense(object sender, RoutedEventArgs e)
+        {
+            OpenTab("License", new TextEditorTabItem(new StreamReader("Resources/License.txt"), true));
+        }
+
+        private void OpenModdingGuide(object sender, RoutedEventArgs e)
+        {
+            OpenTab("Modding Guide", new TextEditorTabItem(new StreamReader("Resources/Modding Guide.txt"), true));
+        }
+
+        private void OpenHowToDoThings(object sender, RoutedEventArgs e)
+        {
+            OpenTab("How to do Things", new TextEditorTabItem(new StreamReader("Resources/How to do Things.txt"), true));
+        }
+
+        #endregion
+
+        #region Tools
+
         private void ToolEncrypt(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openDialog = new OpenFileDialog();
-            openDialog.Filter = "Txt Files (*.txt)|*.txt|Any File (*.*)|*.*";
+            openDialog.Filter = "Any File (*.*)|*.*";
             openDialog.Title = "Select Decrypted File";
             if (openDialog.ShowDialog() == true)
             {
@@ -152,7 +196,7 @@ namespace FDFEditor
 
                 SaveFileDialog saveDialog = new SaveFileDialog();
                 saveDialog.Title = "Save " + Path.GetFileName(from) + " Encrypted As";
-                saveDialog.Filter = "Xna Files (*.xna)|*.xna";
+                saveDialog.Filter = "Any File (*.*)|*.*";
                 saveDialog.FileName = Path.GetFileNameWithoutExtension(from);
                 if (saveDialog.ShowDialog() == true)
                 {
@@ -165,7 +209,7 @@ namespace FDFEditor
         private void ToolDecrypt(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openDialog = new OpenFileDialog();
-            openDialog.Filter = "Xna Files (*.xna)|*.xna";
+            openDialog.Filter = "Any File (*.*)|*.*";
             openDialog.Title = "Select Encrypted File";
             if (openDialog.ShowDialog() == true)
             {
@@ -191,38 +235,15 @@ namespace FDFEditor
             }
         }
 
-        private void OpenAsPattern(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Filter = "Pattern Files (b*.xna)|b*.xna";
-            dialog.Multiselect = true;
-            if (dialog.ShowDialog() == true)
-            {
-                foreach (string path in dialog.FileNames)
-                {
-                    OpenAsPattern(path);
-                }
-            }
-        }
+        #endregion
 
-        private void OpenScratchpad(object sender, RoutedEventArgs e)
+        private void OpenTab(string header, ITabItem content)
         {
-            OpenTab("Scratchpad", new TextEditorTabItem("Scratchpad\n----------\n\n"));
-        }
-
-        private void OpenAbout(object sender, RoutedEventArgs e)
-        {
-            OpenTab("About", new TextEditorTabItem(new StreamReader("Resources/About.txt"), true));
-        }
-
-        private void OpenLicense(object sender, RoutedEventArgs e)
-        {
-            OpenTab("License", new TextEditorTabItem(new StreamReader("Resources/License.txt"), true));
-        }
-
-        private void OpenModdingGuide(object sender, RoutedEventArgs e)
-        {
-            OpenTab("Modding Guide", new TextEditorTabItem(new StreamReader("Resources/Modding Guide.txt"), true));
+            TabItem tab = new TabItem();
+            tab.Header = header;
+            tab.Content = content;
+            MainTabControl.Items.Add(tab);
+            MainTabControl.SelectedIndex = MainTabControl.Items.IndexOf(tab);
         }
 
         private void TabItem_PreviewMouseMove(object sender, MouseEventArgs e)
@@ -241,6 +262,7 @@ namespace FDFEditor
             }
             catch (Exception) { }
         }
+
         private void TabItem_Drop(object sender, DragEventArgs e)
         {
             var tabItemTarget = e.Source as TabItem;
@@ -255,15 +277,6 @@ namespace FDFEditor
                 tabControl.Items.Remove(tabItemSource);
                 tabControl.Items.Insert(targetIndex, tabItemSource);
             }
-        }
-
-        private void OpenTab(string header, ITabItem content)
-        {
-            TabItem tab = new TabItem();
-            tab.Header = header;
-            tab.Content = content;
-            MainTabControl.Items.Add(tab);
-            MainTabControl.SelectedIndex = MainTabControl.Items.IndexOf(tab);
         }
 
         //There are no menu radiobuttons and this is the simplest way to do it
@@ -303,11 +316,6 @@ namespace FDFEditor
             if (Key2.IsChecked)
                 return 2;
             return 3;
-        }
-
-        private void OpenHowToDoThings(object sender, RoutedEventArgs e)
-        {
-            OpenTab("How to do Things", new TextEditorTabItem(new StreamReader("Resources/How to do Things.txt"), true));
         }
     }
 }

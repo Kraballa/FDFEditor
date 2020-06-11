@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
+using System.Windows;
 
 namespace FDFEditor.Backend
 {
@@ -38,6 +39,7 @@ namespace FDFEditor.Backend
 
         public static Stream CryptBuffer(byte[] buffer, bool decrypt = true, bool fdf1 = false, int type = 2)
         {
+            //MessageBox.Show("length: " + buffer.Length + "bytes, that's " + (buffer.Length / 1024) + "kb", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             TripleDESCryptoServiceProvider cryptoServiceProvider = new TripleDESCryptoServiceProvider();
             cryptoServiceProvider.Key = fdf1 ? FDFOldKeys[type] : FDFSteamKeys[type];
             cryptoServiceProvider.Mode = CipherMode.ECB;
@@ -48,7 +50,7 @@ namespace FDFEditor.Backend
         public static void CryptToFile(string path, string content, bool fdf1 = false, int type = 2)
         {
             File.WriteAllText(path, content);
-            EncryptFile(path, fdf1, type);
+            CryptFile(path, fdf1, type);
         }
 
         public static void CryptAndMove(string from, string to, bool decrypt = true, bool fdf1 = false, int type = 2)
@@ -57,7 +59,7 @@ namespace FDFEditor.Backend
             File.WriteAllText(to, content);
         }
 
-        public static void EncryptFile(string FileName, bool fdf1 = false, int type = 2)
+        public static void CryptFile(string FileName, bool fdf1 = false, int type = 2)
         {
             byte[] inputBuffer = File.ReadAllBytes(FileName);
             TripleDESCryptoServiceProvider cryptoServiceProvider = new TripleDESCryptoServiceProvider();
