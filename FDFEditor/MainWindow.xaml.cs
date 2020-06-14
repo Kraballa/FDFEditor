@@ -73,7 +73,7 @@ namespace FDFEditor
                 string text = current.GetPlainText();
                 Console.WriteLine(text);
                 SaveFileDialog saveDialog = new SaveFileDialog();
-                saveDialog.Filter = "Encrypted Xna File (*.xna)|*.xna|Encrypted File (*.*)|*.*|Unencrypted File (*.*)|*.*";
+                saveDialog.Filter = "Encrypted File (*.*)|*.*|Unencrypted File (*.*)|*.*";
                 saveDialog.Title = "Save As";
                 saveDialog.FileName = ((TabItem)MainTabControl.Items[MainTabControl.SelectedIndex]).Header as string;
                 if (saveDialog.ShowDialog() == true)
@@ -115,7 +115,8 @@ namespace FDFEditor
                 {
                     s = new MemoryStream(File.ReadAllBytes(path));
                 }
-                OpenTab(Path.GetFileName(path), new TextEditorTabItem(s));
+                TextEditorTabItem tab = new TextEditorTabItem(s);
+                OpenTab(Path.GetFileName(path), tab);
             }
             catch (Exception e)
             {
