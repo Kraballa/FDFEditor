@@ -5,8 +5,8 @@ using System;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Input;
+using Ookii.Dialogs.Wpf;
 
 namespace FDFEditor
 {
@@ -137,7 +137,7 @@ namespace FDFEditor
                     try
                     {
                         Stream s;
-                        if (dialog.FilterIndex == 0)
+                        if (dialog.FilterIndex == 1)
                         {
                             s = Crypt.CryptStreamFromFile(path, true, FDF1Checkbox.IsChecked, GetSelectedKeyIndex());
                         }
@@ -234,9 +234,14 @@ namespace FDFEditor
             }
         }
 
+        private void ToolDecryptBulk(object sender, RoutedEventArgs e)
+        {
+            new BulkCryptTool(FDF1Checkbox.IsChecked, GetSelectedKeyIndex(), this).Show();
+        }
+
         #endregion
 
-        private void OpenTab(string header, ITabItem content)
+        public void OpenTab(string header, ITabItem content)
         {
             TabItem tab = new TabItem();
             tab.Header = header;

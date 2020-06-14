@@ -46,6 +46,8 @@
                 <MenuItem Header="Decrypt" Click="ToolDecrypt"/>
                 <MenuItem Header="Encrypt" Click="ToolEncrypt"/>
                 <Separator/>
+                <MenuItem Header="Bulk Decrypt" Click="ToolDecryptBulk"/>
+                <Separator/>
                 <MenuItem Header="New Scratchpad" Click="OpenScratchpad"/>
             </MenuItem>
             <MenuItem Header="Help">

@@ -39,3 +39,6 @@ Current Usability Issues:
 
 THIS TOOL WAS MADE WITH GOOD INTENTIONS. DO NOT USE IT FOR MALICIOUS PURPOSES. I WILL TAKE NO RESPONSIBILITY
 FOR ANY LEGAL ACTIONS BROUGHT AGAINST YOU.
+
+This tool makes use of the Ookii Dialogs library to provide additional opening dialogs and is in no way affiliated to this project. 
+View their license under Resources/Ookii License.
