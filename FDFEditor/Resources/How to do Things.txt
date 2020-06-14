@@ -5,7 +5,8 @@ A step by step guide on how to start editing files.
 
 2. Think about what you want to edit. Dialogue? Bullet patterns? Stages? Go to "Help > Modding Guide" and look at the file table to find out what files contain the respective data.
 If you want to edit images, use "Tool > Decrypt" and save as ".png". Use the image editing software of your choice and reencrypt using "Tool > Encrypt".
-Remember that the "Game" and "Key" options are used both for de- and encryption, so use the right ones when saving! 
+Remember that the "Game" and "Key" options are used both for de- and encryption, so use the right ones when saving! If you want to de/encrypt files in bulk, 
+please check out the respective tool and the guide found in Help > Modding Guides, chapter [5] Modding Images
 
 3. Under "Key" select the index of the decryption key depending on what files you want to edit. If you don't know which, try them all and see what works.
 -Key 0: FDF1 Bullet Patterns, FDF1 & 2 Graphics

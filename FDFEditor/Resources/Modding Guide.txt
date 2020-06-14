@@ -5,6 +5,7 @@ Content:
 [2] Filenames and what their content is
 [3] Pattern File Format
 [4] Stage File Format
+[5] Modding Images
 
 
 [1] General Names and such
@@ -200,3 +201,28 @@ frame = 361 :
 当前帧=1：子弹速度变化到0.01，正比，61帧;&
 
 当前帧>1：角度变化到50，正比，90帧;
+
+[5] Modding Images
+Using the new Bulk De/Encryption tool it's quite easy to get the image files into an editable format and back.
+Set the Keys and Game options to your liking. For the steam versions of the FDF games, they'll be "FDF1/2 Steam" and "0".
+Go to "Tools > Bulk De/Encryption".
+In the following window you can do the following:
+1. Set the folder containing encrypted files via the "Encrypted Files" Button
+2. Set the folder that you want the decrypted files to be saved in via the "Decrypted Files" Button
+!!!Do not set these to the same folder!!!
+3. Set the extension files should be after encrypting next to the "Decrypted Files" Button
+4. Set the extension files should be after decrypting next to the "Encrypted Files" Button
+
+The last two options are necessary to speed up the workflow. The game will only accept files ending with ".xna"
+while common image editing programs might reject files not ending with ".png".
+
+DOUBLE CHECK FOLDERS AND NUMBER OF FILES.
+After configuring the directories and files, simply press "Decrypt". The program will now warn you about the
+number of files found. The number of files found in the graphics folder should be around 203 for the 
+Fantastic Danmaku Festival games. Keep the window open.
+
+After decrypting all files, you'll find them in the folder designated in step 2. Simply edit the files to your liking.
+Whenever you want to check your edits, simply press "Encrypt". Again, make sure everything is working properly.
+
+Should any decryptions/encryptions fail, you will be asked whether you want to open the error log, which will
+open a new tab in the main window. Errors usually happen when there are files that use different keys or are already encrypted.

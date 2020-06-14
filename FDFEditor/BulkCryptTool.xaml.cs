@@ -11,9 +11,6 @@ using System.Windows.Documents;
 
 namespace FDFEditor
 {
-    /// <summary>
-    /// Interaktionslogik für BulkCryptTool.xaml
-    /// </summary>
     public partial class BulkCryptTool : Window
     {
         private bool oldKeys;
