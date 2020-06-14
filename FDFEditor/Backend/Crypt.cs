@@ -31,13 +31,13 @@ namespace FDFEditor.Backend
             new byte[16]{79,145,221,238,198,51,249,164,187,17,252,13,241,184,23,0}
         };
 
-        public static Stream OpenCryptFile(string path, bool decrypt = true, bool fdf1 = false, int type = 2)
+        public static Stream CryptStreamFromFile(string path, bool decrypt = true, bool fdf1 = false, int type = 2)
         {
             byte[] content = File.ReadAllBytes(path);
-            return CryptBuffer(content, decrypt, fdf1, type);
+            return CryptStreamFromBuffer(content, decrypt, fdf1, type);
         }
 
-        public static Stream CryptBuffer(byte[] buffer, bool decrypt = true, bool fdf1 = false, int type = 2)
+        public static Stream CryptStreamFromBuffer(byte[] buffer, bool decrypt = true, bool fdf1 = false, int type = 2)
         {
             //MessageBox.Show("length: " + buffer.Length + "bytes, that's " + (buffer.Length / 1024) + "kb", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             TripleDESCryptoServiceProvider cryptoServiceProvider = new TripleDESCryptoServiceProvider();
@@ -47,19 +47,22 @@ namespace FDFEditor.Backend
             return (Stream)new MemoryStream(decryptor.TransformFinalBlock(buffer, 0, buffer.Length));
         }
 
-        public static void CryptToFile(string path, string content, bool fdf1 = false, int type = 2)
+        public static void CryptContentToFile(string path, string content, bool decrypt = false, bool fdf1 = false, int type = 2)
         {
             File.WriteAllText(path, content);
-            CryptFile(path, fdf1, type);
+            CryptFileInPlace(path, decrypt, fdf1, type);
         }
 
-        public static void CryptAndMove(string from, string to, bool decrypt = true, bool fdf1 = false, int type = 2)
+        public static void CryptAndCopyFile(string from, string to, bool decrypt = false, bool fdf1 = false, int type = 2)
         {
-            string content = new StreamReader(Crypt.OpenCryptFile(from, decrypt, fdf1, type)).ReadToEnd();
-            File.WriteAllText(to, content);
+            byte[] content = File.ReadAllBytes(from);
+            Stream s = Crypt.CryptStreamFromBuffer(content, true, fdf1, type);
+            FileStream fs = File.Create(to);
+            s.CopyTo(fs);
+            fs.Close();
         }
 
-        public static void CryptFile(string FileName, bool fdf1 = false, int type = 2)
+        public static void CryptFileInPlace(string FileName, bool decrypt = false, bool fdf1 = false, int type = 2)
         {
             byte[] inputBuffer = File.ReadAllBytes(FileName);
             TripleDESCryptoServiceProvider cryptoServiceProvider = new TripleDESCryptoServiceProvider();

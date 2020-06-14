@@ -83,7 +83,7 @@ namespace FDFEditor
                     {
                         if (saveDialog.FilterIndex == 0)
                         {
-                            Crypt.CryptToFile(saveDialog.FileName, text, FDF1Checkbox.IsChecked, GetSelectedKeyIndex());
+                            Crypt.CryptContentToFile(saveDialog.FileName, text, false, FDF1Checkbox.IsChecked, GetSelectedKeyIndex());
                         }
                         else
                         {
@@ -109,7 +109,7 @@ namespace FDFEditor
                 Stream s;
                 if (encrypted)
                 {
-                    s = Crypt.OpenCryptFile(path, true, FDF1Checkbox.IsChecked, GetSelectedKeyIndex());
+                    s = Crypt.CryptStreamFromFile(path, true, FDF1Checkbox.IsChecked, GetSelectedKeyIndex());
                 }
                 else
                 {
@@ -139,7 +139,7 @@ namespace FDFEditor
                         Stream s;
                         if (dialog.FilterIndex == 0)
                         {
-                            s = Crypt.OpenCryptFile(path, true, FDF1Checkbox.IsChecked, GetSelectedKeyIndex());
+                            s = Crypt.CryptStreamFromFile(path, true, FDF1Checkbox.IsChecked, GetSelectedKeyIndex());
                         }
                         else
                         {
@@ -201,8 +201,7 @@ namespace FDFEditor
                 saveDialog.FileName = Path.GetFileNameWithoutExtension(from);
                 if (saveDialog.ShowDialog() == true)
                 {
-                    string to = saveDialog.FileName;
-                    Crypt.CryptAndMove(from, to, false, FDF1Checkbox.IsChecked, GetSelectedKeyIndex());
+                    Crypt.CryptAndCopyFile(from, saveDialog.FileName, false, FDF1Checkbox.IsChecked, GetSelectedKeyIndex());
                 }
             }
         }
@@ -222,10 +221,9 @@ namespace FDFEditor
                 saveDialog.FileName = Path.GetFileNameWithoutExtension(from) + "_decrypted";
                 if (saveDialog.ShowDialog() == true)
                 {
-                    string to = saveDialog.FileName;
                     try
                     {
-                        Crypt.CryptAndMove(from, to, true, FDF1Checkbox.IsChecked, GetSelectedKeyIndex());
+                        Crypt.CryptAndCopyFile(from, saveDialog.FileName, true, FDF1Checkbox.IsChecked, GetSelectedKeyIndex());
                     }
                     catch (Exception ex)
                     {
