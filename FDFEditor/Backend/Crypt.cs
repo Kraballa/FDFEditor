@@ -39,7 +39,6 @@ namespace FDFEditor.Backend
 
         public static Stream CryptStreamFromBuffer(byte[] buffer, bool decrypt = true, bool fdf1 = false, int type = 2)
         {
-            //MessageBox.Show("length: " + buffer.Length + "bytes, that's " + (buffer.Length / 1024) + "kb", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             TripleDESCryptoServiceProvider cryptoServiceProvider = new TripleDESCryptoServiceProvider();
             cryptoServiceProvider.Key = fdf1 ? FDFOldKeys[type] : FDFSteamKeys[type];
             cryptoServiceProvider.Mode = CipherMode.ECB;
@@ -56,7 +55,7 @@ namespace FDFEditor.Backend
         public static void CryptAndCopyFile(string from, string to, bool decrypt = false, bool fdf1 = false, int type = 2)
         {
             byte[] content = File.ReadAllBytes(from);
-            Stream s = Crypt.CryptStreamFromBuffer(content, true, fdf1, type);
+            Stream s = Crypt.CryptStreamFromBuffer(content, decrypt, fdf1, type);
             FileStream fs = File.Create(to);
             s.CopyTo(fs);
             fs.Close();
