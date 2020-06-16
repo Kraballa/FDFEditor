@@ -3,6 +3,7 @@ using FDFEditor.Control;
 using Microsoft.Win32;
 using System;
 using System.IO;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -66,9 +67,9 @@ namespace FDFEditor
                 {
                     try
                     {
-                        if (saveDialog.FilterIndex == 0)
+                        if (saveDialog.FilterIndex == 1)
                         {
-                            Crypt.CryptContentToFile(saveDialog.FileName, text, false, FDF1Checkbox.IsChecked, GetSelectedKeyIndex());
+                            Crypt.EncryptToFile(saveDialog.FileName, text, FDF1Checkbox.IsChecked, GetSelectedKeyIndex());
                         }
                         else
                         {
@@ -89,12 +90,12 @@ namespace FDFEditor
 
         private void OpenAsText(string path, bool encrypted = true)
         {
-            Stream s;
+            string content;
             if (encrypted)
             {
                 try
                 {
-                    s = Crypt.CryptStreamFromFile(path, true, FDF1Checkbox.IsChecked, GetSelectedKeyIndex());
+                    content = Crypt.ReadFromFile(path, FDF1Checkbox.IsChecked, GetSelectedKeyIndex());
                 }
                 catch (Exception ex)
                 {
@@ -104,9 +105,9 @@ namespace FDFEditor
             }
             else
             {
-                s = new MemoryStream(File.ReadAllBytes(path));
+                content = File.ReadAllText(path);
             }
-            TextEditorTabItem tab = new TextEditorTabItem(s);
+            TextEditorTabItem tab = new TextEditorTabItem(content);
             OpenTab(Path.GetFileName(path), tab);
         }
 
@@ -119,12 +120,12 @@ namespace FDFEditor
             {
                 foreach (string path in dialog.FileNames)
                 {
-                    Stream s;
+                    string content;
                     if (dialog.FilterIndex == 1)
                     {
                         try
                         {
-                            s = Crypt.CryptStreamFromFile(path, true, FDF1Checkbox.IsChecked, GetSelectedKeyIndex());
+                            content = Crypt.ReadFromFile(path, FDF1Checkbox.IsChecked, GetSelectedKeyIndex());
                         }
                         catch (Exception ex)
                         {
@@ -135,11 +136,11 @@ namespace FDFEditor
                     }
                     else
                     {
-                        s = new MemoryStream(File.ReadAllBytes(path));
+                        content = File.ReadAllText(path);
                     }
                     try
                     {
-                        PatternHolder pHolder = PatternHolder.Parse(s);
+                        PatternHolder pHolder = PatternHolder.Parse(new MemoryStream(Encoding.UTF8.GetBytes(content)));
                         OpenTab(Path.GetFileName(path), new PatternTabItem(pHolder));
                     }
                     catch (Exception ex)
@@ -196,7 +197,7 @@ namespace FDFEditor
                 saveDialog.FileName = Path.GetFileNameWithoutExtension(from);
                 if (saveDialog.ShowDialog() == true)
                 {
-                    Crypt.CryptAndCopyFile(from, saveDialog.FileName, false, FDF1Checkbox.IsChecked, GetSelectedKeyIndex());
+                    Crypt.TransformAndCopy(from, saveDialog.FileName, false, FDF1Checkbox.IsChecked, GetSelectedKeyIndex());
                 }
             }
         }
@@ -218,7 +219,7 @@ namespace FDFEditor
                 {
                     try
                     {
-                        Crypt.CryptAndCopyFile(from, saveDialog.FileName, true, FDF1Checkbox.IsChecked, GetSelectedKeyIndex());
+                        Crypt.TransformAndCopy(from, saveDialog.FileName, true, FDF1Checkbox.IsChecked, GetSelectedKeyIndex());
                     }
                     catch (Exception ex)
                     {

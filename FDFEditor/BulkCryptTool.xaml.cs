@@ -60,7 +60,7 @@ namespace FDFEditor
                 }
                 try
                 {
-                    Crypt.CryptAndCopyFile(path, destPath, true, oldKeys, keyIndex);
+                    Crypt.TransformAndCopy(path, destPath, true, oldKeys, keyIndex);
                     succeeded++;
                 }
                 catch (Exception)
@@ -108,7 +108,7 @@ namespace FDFEditor
 
                 try
                 {
-                    Crypt.CryptAndCopyFile(path, destPath, false, oldKeys, keyIndex);
+                    Crypt.TransformAndCopy(path, destPath, false, oldKeys, keyIndex);
                     succeeded++;
                 }
                 catch (Exception)
