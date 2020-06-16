@@ -6,7 +6,6 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using Ookii.Dialogs.Wpf;
 
 namespace FDFEditor
 {
@@ -22,18 +21,18 @@ namespace FDFEditor
 
         #region Commands
 
-        private void OpenCommand(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
+        private void OpenCommand(object sender, ExecutedRoutedEventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Filter = "Encrypted Files (*.xna)|*.xna|Plain Text Files (*.txt)|*.txt";
+            dialog.Filter = "Encrypted Files (*.*)|*.*|Plain Files (*.*)|*.*";
             dialog.Multiselect = true;
             if (dialog.ShowDialog() == true)
             {
                 foreach (string path in dialog.FileNames)
                 {
-                    if (Path.GetExtension(path).Contains("xna"))
+                    if (dialog.FilterIndex == 1)
                     {
-                        OpenAsText(path);
+                        OpenAsText(path, true);
                     }
                     else
                     {
@@ -48,19 +47,6 @@ namespace FDFEditor
             MainTabControl.Items.Remove(MainTabControl.SelectedItem);
         }
 
-        private void ExitCommand(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
-        {
-            InputGestureCollection command = ((RoutedCommand)e.Command).InputGestures;
-            for (var enumerator = command.GetEnumerator(); enumerator.MoveNext();)
-            {
-                KeyGesture gesture = enumerator.Current as KeyGesture;
-                if (gesture.DisplayString.Equals("Esc")) //not exit when pressing escape. this is a hack. Fix by implementing a custom command since pressing escape seems to trigger this automatically.
-                    return;
-            }
-
-            System.Windows.Application.Current.Shutdown();
-        }
-
         private void SaveCommand(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
         {
             if (MainTabControl.Items.Count == 0)
@@ -73,12 +59,11 @@ namespace FDFEditor
                 string text = current.GetPlainText();
                 Console.WriteLine(text);
                 SaveFileDialog saveDialog = new SaveFileDialog();
-                saveDialog.Filter = "Encrypted File (*.*)|*.*|Unencrypted File (*.*)|*.*";
+                saveDialog.Filter = "Encrypted File (*.*)|*.*|Plain File (*.*)|*.*";
                 saveDialog.Title = "Save As";
                 saveDialog.FileName = ((TabItem)MainTabControl.Items[MainTabControl.SelectedIndex]).Header as string;
                 if (saveDialog.ShowDialog() == true)
                 {
-                    //((TabItem)MainTabControl.Items[MainTabControl.SelectedIndex]).Header = Path.GetFileNameWithoutExtension(saveDialog.FileName);
                     try
                     {
                         if (saveDialog.FilterIndex == 0)
@@ -104,55 +89,65 @@ namespace FDFEditor
 
         private void OpenAsText(string path, bool encrypted = true)
         {
-            try
+            Stream s;
+            if (encrypted)
             {
-                Stream s;
-                if (encrypted)
+                try
                 {
                     s = Crypt.CryptStreamFromFile(path, true, FDF1Checkbox.IsChecked, GetSelectedKeyIndex());
                 }
-                else
+                catch (Exception ex)
                 {
-                    s = new MemoryStream(File.ReadAllBytes(path));
+                    MessageBox.Show("Error decrypting file.\n" + ex, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
                 }
-                TextEditorTabItem tab = new TextEditorTabItem(s);
-                OpenTab(Path.GetFileName(path), tab);
             }
-            catch (Exception e)
+            else
             {
-                string text = "Error reading file. It probably was already decrypted.\n" + e;
-                MessageBox.Show(text, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                s = new MemoryStream(File.ReadAllBytes(path));
             }
+            TextEditorTabItem tab = new TextEditorTabItem(s);
+            OpenTab(Path.GetFileName(path), tab);
         }
 
         private void OpenAsPattern(object sender, RoutedEventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Filter = "Encrypted File (*.*)|*.*|Unencrypted File (*.*)|*.*";
+            dialog.Filter = "Encrypted Files (*.*)|*.*|Plain Files (*.*)|*.*";
             dialog.Multiselect = true;
             if (dialog.ShowDialog() == true)
             {
                 foreach (string path in dialog.FileNames)
                 {
-                    try
+                    Stream s;
+                    if (dialog.FilterIndex == 1)
                     {
-                        Stream s;
-                        if (dialog.FilterIndex == 1)
+                        try
                         {
                             s = Crypt.CryptStreamFromFile(path, true, FDF1Checkbox.IsChecked, GetSelectedKeyIndex());
                         }
-                        else
+                        catch (Exception ex)
                         {
-                            s = new MemoryStream(File.ReadAllBytes(path));
+                            MessageBox.Show("Error decrypting file " + path + "\n" + ex, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            continue;
                         }
+
+                    }
+                    else
+                    {
+                        s = new MemoryStream(File.ReadAllBytes(path));
+                    }
+                    try
+                    {
                         PatternHolder pHolder = PatternHolder.Parse(s);
                         OpenTab(Path.GetFileName(path), new PatternTabItem(pHolder));
                     }
                     catch (Exception ex)
                     {
-                        string text = "Error. Either the file couldn't be parsed or the decryption failed.\n" + ex;
-                        MessageBox.Show(text, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Error parsing file " + path + "\n" + ex, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        continue;
                     }
+
                 }
             }
         }
@@ -227,7 +222,7 @@ namespace FDFEditor
                     }
                     catch (Exception ex)
                     {
-                        string text = "Error decrypting file. It probably used a different key for encryption.\n" + ex;
+                        string text = "Error decrypting file. It probably used a different key for encryption or wasn't encrypted.\n" + ex;
                         MessageBox.Show(text, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }

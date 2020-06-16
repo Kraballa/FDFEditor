@@ -10,7 +10,6 @@
     <Window.CommandBindings>
         <CommandBinding Command="Open" Executed="OpenCommand"/>
         <CommandBinding Command="Close" Executed="CloseCommand"/>
-        <CommandBinding Command="Stop" Executed="ExitCommand"/>
         <CommandBinding Command="Save" Executed="SaveCommand"/>
     </Window.CommandBindings>
     <Window.InputBindings>
@@ -29,8 +28,6 @@
                 <MenuItem Header="_Close Tab" Command="Close"/>
                 <Separator/>
                 <MenuItem Header="Close All Tabs" Click="CloseAllTabs"/>
-                <Separator/>
-                <MenuItem Header="E_xit" Command="Stop" InputGestureText="Ctrl+X"/>
             </MenuItem>
             <MenuItem Header="Game">
                 <MenuItem Header="FDF1 v1.3 and below" IsCheckable="True" x:Name="FDF1Checkbox" Click="FDFCheckbox_Click"/>
