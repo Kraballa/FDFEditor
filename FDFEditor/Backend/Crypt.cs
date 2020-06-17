@@ -34,7 +34,7 @@ namespace FDFEditor.Backend
         public static string ReadFromFile(string path, bool fdf1 = false, int type = 2)
         {
             byte[] content = File.ReadAllBytes(path);
-            return Encoding.UTF8.GetString(TransformBuffer(content, true, fdf1, type));
+            return new StreamReader(new MemoryStream(TransformBuffer(content, true, fdf1, type))).ReadToEnd();
         }
 
         public static byte[] TransformBuffer(byte[] buffer, bool decrypt = true, bool fdf1 = false, int type = 2)
